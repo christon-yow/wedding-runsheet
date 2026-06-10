@@ -68,6 +68,22 @@
     margin: 22px 4px 10px;
     padding-bottom: 4px;
     border-bottom: 2px solid var(--sage);
+    scroll-margin-top: 110px; /* clear the sticky filter bar when jumping */
+  }
+
+  /* Jump bar */
+  .jump-bar { display: flex; gap: 6px; margin-top: 8px; }
+  .jump-btn {
+    flex: 1;
+    border: none;
+    background: #e9efe9;
+    color: var(--emerald-dark);
+    border-radius: 8px;
+    padding: 7px 4px;
+    font-size: .75rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
   }
   .card {
     background: var(--card);
@@ -78,6 +94,14 @@
     margin-bottom: 10px;
   }
   .card.mine { border-left-color: var(--emerald); box-shadow: 0 1px 4px rgba(46,110,78,.18); }
+  .card.expandable { cursor: pointer; }
+  .card-body { display: none; }
+  .card.open .card-body { display: block; }
+  .chev {
+    color: var(--sage-dark); font-size: .75rem;
+    transition: transform .15s; display: inline-block;
+  }
+  .card.open .chev { transform: rotate(180deg); }
   .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
   .time { font-weight: 700; color: var(--emerald-dark); font-size: .9rem; white-space: nowrap; }
   .loc { font-size: .7rem; background: #edf2ed; color: var(--sage-dark); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
@@ -125,6 +149,7 @@
 <div id="landing">
   <h2>Christon &amp; Michelle</h2>
   <div class="date">Actual Day Runsheet &middot; 8.8.26 💚</div>
+  <div id="countdown" style="font-size:1.05rem; font-weight:600; margin:-24px 0 32px; opacity:.95;"></div>
   <label for="whoami">I am...</label>
   <select id="whoami">
     <option value="" selected disabled>Select your name</option>
@@ -164,11 +189,17 @@
 <div class="filter-bar">
   <div class="filter-label">Viewing as <span id="identityLabel"></span><button class="change-link" onclick="showLanding()">change</button></div>
   <div class="chips" id="chips"></div>
+  <div class="jump-bar" id="jumpBar"></div>
 </div>
 
 <div class="count-note" id="countNote"></div>
 <main id="timeline"></main>
-<footer>Tap your name above to see only the parts you're involved in. Tap "Everyone" for the full itinerary.</footer>
+<footer>
+  Tap a card to see its details. Tap "Everyone" for the full itinerary.<br><br>
+  💡 <b>Tip:</b> save this page to your Home Screen for one-tap access on the big day —<br>
+  iPhone: Safari share button → <i>Add to Home Screen</i><br>
+  Android: Chrome menu (⋮) → <i>Add to Home screen</i>
+</footer>
 
 <script>
 // ====== DATA (from Google Sheets > AD Runsheet, rows 32–94) ======
@@ -290,16 +321,20 @@ function renderChips() {
   document.getElementById("identityLabel").textContent = identity || "";
 }
 
+const JUMP_LABELS = ["Morning", "Church & Lunch", "Dinner"];
+
 function renderTimeline() {
   const main = document.getElementById("timeline");
   let total = 0;
   let html = "";
+  const visibleSections = [];
 
-  for (const section of SECTIONS) {
+  SECTIONS.forEach((section, si) => {
     const events = section.events.filter(ev => involves(ev, selected));
-    if (!events.length) continue;
+    if (!events.length) return;
     total += events.length;
-    html += `<div class="section-title">${esc(section.name)}</div>`;
+    visibleSections.push(si);
+    html += `<div class="section-title" id="sec-${si}">${esc(section.name)}</div>`;
     for (const ev of events) {
       const tags = peopleTokens(ev.people).map(t => {
         const me = selected !== "Everyone" &&
@@ -307,25 +342,36 @@ function renderTimeline() {
            (t === "All Bridal Party" && BRIDAL_PARTY.includes(selected)));
         return `<span class="people-tag${me ? " me" : ""}">${esc(t)}</span>`;
       }).join("");
-      html += `<div class="card${selected !== "Everyone" ? " mine" : ""}">
+      const body =
+        (tags ? `<div class="field">${tags}</div>` : "") +
+        (ev.duties ? `<div class="field"><b>Duties</b>${esc(ev.duties)}</div>` : "") +
+        (ev.logistics ? `<div class="field"><b>Logistics</b>${esc(ev.logistics)}</div>` : "") +
+        (ev.remarks ? `<div class="field"><b>Remarks</b>${esc(ev.remarks)}</div>` : "");
+      const expandable = body !== "";
+      html += `<div class="card${selected !== "Everyone" ? " mine" : ""}${expandable ? " expandable" : ""}"${expandable ? ` onclick="this.classList.toggle('open')"` : ""}>
         <div class="card-top">
           <span class="time">${esc(ev.time)}</span>
-          ${ev.location ? `<span class="loc">📍 ${esc(ev.location)}</span>` : ""}
+          <span>
+            ${ev.location ? `<span class="loc">📍 ${esc(ev.location)}</span>` : ""}
+            ${expandable ? `<span class="chev">▼</span>` : ""}
+          </span>
         </div>
         <div class="event">${esc(ev.event)}</div>
-        ${tags ? `<div class="field">${tags}</div>` : ""}
-        ${ev.duties ? `<div class="field"><b>Duties</b>${esc(ev.duties)}</div>` : ""}
-        ${ev.logistics ? `<div class="field"><b>Logistics</b>${esc(ev.logistics)}</div>` : ""}
-        ${ev.remarks ? `<div class="field"><b>Remarks</b>${esc(ev.remarks)}</div>` : ""}
+        ${expandable ? `<div class="card-body">${body}</div>` : ""}
       </div>`;
     }
-  }
+  });
 
   main.innerHTML = html || `<div class="empty-state">No events found for ${esc(selected)}.</div>`;
   document.getElementById("countNote").textContent =
     selected === "Everyone"
       ? `Showing the full itinerary (${total} events)`
       : `Showing ${total} event${total === 1 ? "" : "s"} involving ${selected}`;
+
+  // Jump bar reflects only sections visible in the current filter
+  document.getElementById("jumpBar").innerHTML = visibleSections.map(si =>
+    `<button class="jump-btn" onclick="document.getElementById('sec-${si}').scrollIntoView({behavior:'smooth'})">${esc(JUMP_LABELS[si] || SECTIONS[si].name)}</button>`
+  ).join("");
 }
 
 function selectPerson(p) {
@@ -351,6 +397,19 @@ function confirmIdentity() {
 function showLanding() {
   document.getElementById("landing").classList.remove("hidden");
 }
+
+// Countdown on the landing page
+(function () {
+  const target = new Date(2026, 7, 8); // 8 Aug 2026
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((target - today) / 86400000);
+  const el = document.getElementById("countdown");
+  if (days > 1) el.textContent = `${days} days to go 💚`;
+  else if (days === 1) el.textContent = "Tomorrow! 💚";
+  else if (days === 0) el.textContent = "It's today! 🎉";
+  else el.textContent = "Married! 💍";
+})();
 
 // Dropdown options are baked into the HTML; just wire up the change listener
 const sel = document.getElementById("whoami");
