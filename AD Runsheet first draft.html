@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christon &amp; Michelle 8.8.26 — AD Runsheet</title>
+<style>
+  :root {
+    --sage: #8aa68a;
+    --sage-dark: #5f7d5f;
+    --emerald: #2e6e4e;
+    --emerald-dark: #1f4d36;
+    --bg: #f6f5f0;
+    --card: #ffffff;
+    --text: #2b2b2b;
+    --muted: #777;
+    --line: #e3e1d8;
+    --highlight: #fff3cd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+  }
+  header {
+    background: linear-gradient(135deg, var(--emerald-dark), var(--sage-dark));
+    color: #fff;
+    padding: 20px 16px 14px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.25rem; font-weight: 600; letter-spacing: .5px; }
+  header p { font-size: .8rem; opacity: .85; margin-top: 4px; }
+
+  .filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 12px 8px;
+  }
+  .filter-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    border: 1px solid var(--sage-dark);
+    background: #fff;
+    color: var(--sage-dark);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: .8rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .chip.active { background: var(--emerald); border-color: var(--emerald); color: #fff; font-weight: 600; }
+
+  .count-note { font-size: .75rem; color: var(--muted); padding: 10px 16px 0; }
+
+  main { padding: 8px 12px 40px; max-width: 640px; margin: 0 auto; }
+
+  .section-title {
+    font-size: .85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--emerald-dark);
+    margin: 22px 4px 10px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--sage);
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--sage);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .card.mine { border-left-color: var(--emerald); box-shadow: 0 1px 4px rgba(46,110,78,.18); }
+  .card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .time { font-weight: 700; color: var(--emerald-dark); font-size: .9rem; white-space: nowrap; }
+  .loc { font-size: .7rem; background: #edf2ed; color: var(--sage-dark); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .event { font-size: .95rem; font-weight: 600; margin-top: 4px; white-space: pre-line; }
+  .field { font-size: .8rem; margin-top: 6px; color: #444; white-space: pre-line; }
+  .field b { color: var(--muted); font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; display: block; }
+  .people-tag { display: inline-block; background: #f0ede4; border-radius: 6px; padding: 1px 6px; margin: 2px 2px 0 0; font-size: .78rem; }
+  .people-tag.me { background: var(--emerald); color: #fff; font-weight: 600; }
+  .empty-state { text-align: center; color: var(--muted); padding: 40px 16px; font-size: .9rem; }
+  footer { text-align: center; font-size: .7rem; color: var(--muted); padding: 0 16px 30px; }
+
+  /* Landing page */
+  #landing {
+    position: fixed; inset: 0; z-index: 100;
+    background: linear-gradient(160deg, var(--emerald-dark), var(--sage-dark));
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 24px; text-align: center; color: #fff;
+  }
+  #landing.hidden { display: none; }
+  #landing h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: .5px; }
+  #landing .date { font-size: .9rem; opacity: .85; margin-top: 6px; margin-bottom: 36px; }
+  #landing label { font-size: 1.1rem; font-weight: 600; display: block; margin-bottom: 12px; }
+  #landing select {
+    width: 100%; max-width: 320px;
+    font-size: 1.05rem; padding: 12px 14px;
+    border-radius: 10px; border: none;
+    background: #fff; color: var(--text);
+  }
+  #landing button {
+    margin-top: 16px; width: 100%; max-width: 320px;
+    font-size: 1.05rem; font-weight: 600;
+    padding: 13px; border: none; border-radius: 10px;
+    background: #fff; color: var(--emerald-dark); cursor: pointer;
+  }
+  #landing button:disabled { opacity: .5; }
+  .change-link {
+    font-size: .75rem; color: var(--sage-dark);
+    text-decoration: underline; background: none; border: none;
+    cursor: pointer; margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div id="landing">
+  <h2>Christon &amp; Michelle</h2>
+  <div class="date">Actual Day Runsheet &middot; 8.8.26 💚</div>
+  <label for="whoami">I am...</label>
+  <select id="whoami">
+    <option value="" selected disabled>Select your name</option>
+    <option>Chris</option>
+    <option>Mich</option>
+    <option>Vic</option>
+    <option>Kim</option>
+    <option>Poh</option>
+    <option>Karen</option>
+    <option>Chingyee</option>
+    <option>Yi Ren</option>
+    <option>Cliff</option>
+    <option>Daryl</option>
+    <option>Tsao</option>
+    <option>Alex</option>
+    <option>Sam &amp; Trish</option>
+    <option>Julian</option>
+    <option>Clifford</option>
+    <option>Shimone</option>
+    <option>Esna</option>
+    <option>Winx</option>
+    <option>PG &amp; VG</option>
+  </select>
+  <button id="confirmBtn" disabled onclick="confirmIdentity()">Confirm</button>
+  <noscript>
+    <p style="margin-top:20px; background:#fff3cd; color:#7a5c00; padding:12px; border-radius:10px; font-size:.85rem; max-width:320px;">
+      ⚠️ This page needs a proper browser to work. Tap the share icon and choose "Open in Safari" (iPhone) or open with Chrome (Android).
+    </p>
+  </noscript>
+</div>
+
+<header>
+  <h1>Christon &amp; Michelle &middot; 8.8.26</h1>
+  <p>Actual Day Runsheet — for our amazing helpers 💚</p>
+</header>
+
+<div class="filter-bar">
+  <div class="filter-label">Viewing as <span id="identityLabel"></span><button class="change-link" onclick="showLanding()">change</button></div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<div class="count-note" id="countNote"></div>
+<main id="timeline"></main>
+<footer>Tap your name above to see only the parts you're involved in. Tap "Everyone" for the full itinerary.</footer>
+
+<script>
+// ====== DATA (from Google Sheets > AD Runsheet, rows 32–94) ======
+const SECTIONS = [
+  {
+    name: "Morning Preparations",
+    events: [
+      {time:"5:30AM", event:"Mich, Chris, Chris' Mum wake up for make up", people:"Mich, Chris", duties:"", logistics:"Bridal Bouquet", location:"One-north / Tamp 914", remarks:""},
+      {time:"7:15AM", event:"Chris leaves 914 for one-north", people:"Cliff, Chris", duties:"", logistics:"", location:"Tampines 914", remarks:""},
+      {time:"7:15AM", event:"PG and VG arrive", people:"PG & VG", duties:"", logistics:"", location:"One-north", remarks:""},
+      {time:"7:35AM", event:"Bridesmaids and groomsmen to arrive", people:"Daryl, Tsao, Yi Ren, Vic, Alex, Poh, Kim, Karen, Chingyee", duties:"", logistics:"", location:"One-north", remarks:""},
+      {time:"7:45AM", event:"Chris and Cliff reach one-north", people:"Chris, Cliff", duties:"Christon to order Macs breakfast the night before", logistics:"", location:"One-north", remarks:""},
+      {time:"7:50AM", event:"Unveil the Bride", people:"Chris, Mich", duties:"", logistics:"", location:"", remarks:""},
+      {time:"8:40AM", event:"Load logistics into car", people:"All Bridal Party", duties:"", logistics:"", location:"One-north", remarks:"Poh Car - xxx\nTsao Car - xxx\nYiren Car - xxx\nDaryl Car - xxx"},
+      {time:"8:50AM", event:"Travel to One-north Park for photos", people:"All Bridal Party, PG & VG", duties:"", logistics:"", location:"One-north Park", remarks:""},
+      {time:"9:00AM", event:"Bridal Party photoshoot", people:"All Bridal Party, PG & VG", duties:"", logistics:"", location:"One-north", remarks:""},
+      {time:"9:35AM", event:"Drivers drive to Church", people:"Cliff", duties:"Those who drove will carpool together", logistics:"", location:"AMC", remarks:"Poh Car - xxx\nTsao Car - xxx\nYiren Car - xxx\nDaryl Car - xxx"},
+      {time:"9:45AM", event:"Reach Church, Final Setup", people:"Daryl, Chingyee, Alex", duties:"Check overall decor and necessary logistics on reception table, block parking lot for Coffee Vendor, Mich's Fam car", logistics:"", location:"AMC", remarks:""},
+      {time:"9:45AM", event:"Band and Emcees reach Church", people:"Sam & Trish, Esna, Winx, Tsao", duties:"Soundcheck", logistics:"", location:"AMC", remarks:""},
+      {time:"10:15AM", event:"Station at reception tables", people:"Daryl, Chingyee", duties:"Tick attendance for guests", logistics:"2 x guestlists", location:"AMC", remarks:""},
+      {time:"10:15AM", event:"Usher ppl to Sanctuary", people:"Shimone", duties:"Station at Level 1 social hall to usher guests up", logistics:"", location:"AMC", remarks:""},
+      {time:"10:30AM", event:"Hall ready", people:"Cliff", duties:"CC play looping music and slideshow", logistics:"", location:"AMC", remarks:""},
+      {time:"10:45AM", event:"Guests take their seats", people:"Sam & Trish", duties:"Emcees remind all to take their seats", logistics:"", location:"AMC", remarks:""},
+      {time:"11:00AM", event:"Doors Close and Keep Angbao Box", people:"Chingyee, Daryl", duties:"Put in logistics room (toddlers room) - Mich to check with Joyce about the keys", logistics:"", location:"AMC", remarks:""}
+    ]
+  },
+  {
+    name: "Holy Matrimony & Lunch",
+    events: [
+      {time:"11:00AM", event:"Line up for walk in", people:"Vic, Poh, Kim, Karen, Chingyee", duties:"Bride, Father, Bridesmaids, Flower Girl, Page Boy outside hall", logistics:"", location:"AMC", remarks:""},
+      {time:"11:00AM", event:"Play wedding teaser video", people:"Cliff", duties:"CC play Pre wedding video", logistics:"", location:"AMC", remarks:""},
+      {time:"11:01AM", event:"Ceremony Start", people:"Sam & Trish", duties:"Emcees start", logistics:"", location:"AMC", remarks:""},
+      {time:"11:05AM", event:"Flower Boy Page Girl walk in", people:"Cliff, Alex, Daryl", duties:"CC play \"song\"\nDaryl and Alex open doors", logistics:"Rings, flower basket, petals", location:"AMC", remarks:""},
+      {time:"11:06AM", event:"Bridesmaids walk in", people:"Vic, Poh, Karen, Kim, Chingyee", duties:"", logistics:"Bridesmaid bouquet", location:"AMC", remarks:""},
+      {time:"11:08AM", event:"Bride and Father walk in", people:"Alex, Mich, Daryl", duties:"Close doors", logistics:"", location:"AMC", remarks:""},
+      {time:"11:10AM", event:"Praise and Worship", people:"Cliff, Tsao, Esna, Winx", duties:"CC show lyrics to 1. Your Love Never Fails 2. Through It All", logistics:"", location:"AMC", remarks:""},
+      {time:"11:20AM", event:"Pastor Sharing\nLunch Caterer Arrives", people:"Pastor Isaac, Yi Ren", duties:"Yi Ren liaise with lunch caterer", logistics:"", location:"AMC", remarks:""},
+      {time:"11:35AM", event:"Vows", people:"Kim", duties:"Give rings to Pst Isaac", logistics:"", location:"AMC", remarks:""},
+      {time:"11:45AM", event:"C&M March out and in", people:"Tsao, Daryl, Sam & Trish", duties:"Prep guitar and keyboard for TIBTO, Emcees", logistics:"", location:"AMC", remarks:""},
+      {time:"11:50AM", event:"Childhood Montage", people:"Sam & Trish", duties:"", logistics:"", location:"", remarks:""},
+      {time:"11:50AM", event:"Prepare Music Setup", people:"", duties:"", logistics:"", location:"", remarks:""},
+      {time:"11:55AM", event:"C&M TIBTO", people:"Tsao, Cliff", duties:"CC play \"video\"", logistics:"", location:"AMC", remarks:""},
+      {time:"12:00PM", event:"C&M Speeches", people:"Chris, Mich", duties:"", logistics:"", location:"AMC", remarks:""},
+      {time:"12:10PM", event:"Phototaking & Lunch", people:"Sam & Trish, Shimone", duties:"Usher guests to FMS(P) Canteen\nEmcees prep guests for photo", logistics:"Phototaking Slides", location:"AMC", remarks:""},
+      {time:"12:40PM", event:"Chris & Mich eat and mingle with guests", people:"Mich, Chris", duties:"", logistics:"", location:"AMC", remarks:""},
+      {time:"12:40PM", event:"Hall Tear Down once phototaking is done", people:"All Bridal Party", duties:"", logistics:"", location:"AMC", remarks:""},
+      {time:"2:30PM", event:"Caterer tears down — contact facilities manager once tear down & clean up done at church", people:"Yi Ren", duties:"Clear lunch and vacate FMS(P)", logistics:"", location:"AMC", remarks:""},
+      {time:"2:45PM", event:"Head to Pan Pac", people:"Chris, Mich", duties:"Mich dad to check in, put church angbao box in the room", logistics:"", location:"Pan Pac", remarks:""},
+      {time:"3:00PM", event:"Bathe and freshen up", people:"Chris, Mich", duties:"", logistics:"", location:"Pan Pac", remarks:""},
+      {time:"3:30PM", event:"Mich to start Make Up @ Pan Pac", people:"Mich", duties:"", logistics:"", location:"Pan Pac", remarks:""},
+      {time:"3:30PM", event:"Mums' Make Up @ Pan Pac", people:"", duties:"Both Mums", logistics:"", location:"Pan Pac", remarks:""},
+      {time:"5:30PM", event:"Tea Ceremony\nAV & VC Set Up, Emcees to test", people:"Julian, Clifford, Chris, Mich, Sam & Trish, PG & VG", duties:"Clifford & Julian to assist with tea plates & ang pows and calling order of relatives. Angbaos to be deposited in dinner angbao box", logistics:"Tower Club to provide teacups and tea", location:"Tower Club", remarks:""}
+    ]
+  },
+  {
+    name: "Dinner Banquet",
+    events: [
+      {time:"6:00PM", event:"Bridal Party Arrive", people:"All Bridal Party", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"6:30PM", event:"Reception", people:"Chingyee, Yi Ren", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:00PM", event:"C&M Line up", people:"Chris, Mich", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:00PM", event:"Start Dinner", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:15PM", event:"C&M walk in", people:"Tsao, Chris, Mich", duties:"Play \"song\"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:20PM", event:"1st Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:35PM", event:"2nd Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:40PM", event:"Vic's Speech", people:"Vic", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:50PM", event:"3rd Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:00PM", event:"Game", people:"Sam & Trish, Tsao", duties:"Guess the Song", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:20PM", event:"4th Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:35PM", event:"5th Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:45PM", event:"Yam Seng", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:55PM", event:"Couple Speech", people:"Mich, Chris", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:05PM", event:"Phototaking", people:"Chris, Mich, Karen, Daryl", duties:"By social circle", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:05PM", event:"6th Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:20PM", event:"7th Dish", people:"", duties:"Wedding playlist to loop in BG", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:30PM", event:"Emcees to conclude ceremony and direct people to after party at Straits Bar", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:30PM", event:"Fam to stand by door and greet guests", people:"Chris, Mich, Clifford", duties:"", logistics:"", location:"Tower Club", remarks:""}
+    ]
+  }
+];
+
+// "All Bridal Party" expands to these people:
+const BRIDAL_PARTY = ["Vic","Kim","Poh","Karen","Chingyee","Yi Ren","Cliff","Daryl","Tsao","Alex","Chris","Mich"];
+
+// Names selectable on the landing page (in display order)
+const PEOPLE = [
+  "Chris","Mich",
+  "Vic","Kim","Poh","Karen","Chingyee",
+  "Yi Ren","Cliff","Daryl","Tsao","Alex",
+  "Sam & Trish","Julian","Clifford","Shimone","Esna","Winx","PG & VG"
+];
+
+let identity = null;          // who the viewer is
+let selected = "Everyone";    // which tab is active
+
+function peopleTokens(str) {
+  return str ? str.split(",").map(s => s.trim()).filter(Boolean) : [];
+}
+
+function involves(ev, person) {
+  if (person === "Everyone") return true;
+  const tokens = peopleTokens(ev.people);
+  for (const t of tokens) {
+    if (t.toLowerCase() === person.toLowerCase()) return true;
+    if (t === "All Bridal Party" && BRIDAL_PARTY.includes(person)) return true;
+  }
+  return false;
+}
+
+function esc(s) {
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderChips() {
+  const el = document.getElementById("chips");
+  const tabs = identity ? ["Everyone", identity] : ["Everyone"];
+  el.innerHTML = tabs.map(p =>
+    `<button class="chip${p === selected ? " active" : ""}" onclick="selectPerson('${p.replace(/'/g,"\\'")}')">${esc(p)}</button>`
+  ).join("");
+  document.getElementById("identityLabel").textContent = identity || "";
+}
+
+function renderTimeline() {
+  const main = document.getElementById("timeline");
+  let total = 0;
+  let html = "";
+
+  for (const section of SECTIONS) {
+    const events = section.events.filter(ev => involves(ev, selected));
+    if (!events.length) continue;
+    total += events.length;
+    html += `<div class="section-title">${esc(section.name)}</div>`;
+    for (const ev of events) {
+      const tags = peopleTokens(ev.people).map(t => {
+        const me = selected !== "Everyone" &&
+          (t.toLowerCase() === selected.toLowerCase() ||
+           (t === "All Bridal Party" && BRIDAL_PARTY.includes(selected)));
+        return `<span class="people-tag${me ? " me" : ""}">${esc(t)}</span>`;
+      }).join("");
+      html += `<div class="card${selected !== "Everyone" ? " mine" : ""}">
+        <div class="card-top">
+          <span class="time">${esc(ev.time)}</span>
+          ${ev.location ? `<span class="loc">📍 ${esc(ev.location)}</span>` : ""}
+        </div>
+        <div class="event">${esc(ev.event)}</div>
+        ${tags ? `<div class="field">${tags}</div>` : ""}
+        ${ev.duties ? `<div class="field"><b>Duties</b>${esc(ev.duties)}</div>` : ""}
+        ${ev.logistics ? `<div class="field"><b>Logistics</b>${esc(ev.logistics)}</div>` : ""}
+        ${ev.remarks ? `<div class="field"><b>Remarks</b>${esc(ev.remarks)}</div>` : ""}
+      </div>`;
+    }
+  }
+
+  main.innerHTML = html || `<div class="empty-state">No events found for ${esc(selected)}.</div>`;
+  document.getElementById("countNote").textContent =
+    selected === "Everyone"
+      ? `Showing the full itinerary (${total} events)`
+      : `Showing ${total} event${total === 1 ? "" : "s"} involving ${selected}`;
+}
+
+function selectPerson(p) {
+  selected = p;
+  renderChips();
+  renderTimeline();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+// ====== Landing page logic ======
+function confirmIdentity() {
+  const val = document.getElementById("whoami").value;
+  if (!val) return;
+  identity = val;
+  selected = val; // land on their own view first
+  try { localStorage.setItem("rs_identity", val); } catch (e) {}
+  document.getElementById("landing").classList.add("hidden");
+  renderChips();
+  renderTimeline();
+  window.scrollTo(0, 0);
+}
+
+function showLanding() {
+  document.getElementById("landing").classList.remove("hidden");
+}
+
+// Dropdown options are baked into the HTML; just wire up the change listener
+const sel = document.getElementById("whoami");
+sel.addEventListener("change", () => {
+  document.getElementById("confirmBtn").disabled = !sel.value;
+});
+
+// If they've chosen before on this device, skip the landing page
+let remembered = null;
+try { remembered = localStorage.getItem("rs_identity"); } catch (e) {}
+if (remembered && PEOPLE.includes(remembered)) {
+  sel.value = remembered;
+  document.getElementById("confirmBtn").disabled = false;
+  confirmIdentity();
+}
+
+renderChips();
+renderTimeline();
+</script>
+</body>
+</html>
