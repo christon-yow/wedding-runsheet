@@ -85,6 +85,32 @@
     cursor: pointer;
     white-space: nowrap;
   }
+  .jump-btn.active { background: var(--emerald); color: #fff; }
+
+  /* Emcee script */
+  :root { --sam: #2563ab; --sam-bg: #e8f1fa; --trish: #c2476f; --trish-bg: #fbe9f0; }
+  .script-time {
+    font-weight: 700; color: var(--emerald-dark);
+    margin: 18px 4px 8px; font-size: .9rem;
+    scroll-margin-top: 110px;
+  }
+  .line {
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 8px;
+    font-size: .9rem; white-space: pre-line;
+  }
+  .line b { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .line.sam { background: var(--sam-bg); border-left: 4px solid var(--sam); }
+  .line.sam b { color: var(--sam); }
+  .line.trish { background: var(--trish-bg); border-left: 4px solid var(--trish); }
+  .line.trish b { color: var(--trish); }
+  .line.cue {
+    background: none; border: 1px dashed var(--line);
+    color: var(--muted); font-style: italic; font-size: .8rem; text-align: center;
+  }
+  .script-note {
+    background: var(--highlight); border-radius: 10px;
+    padding: 10px 12px; margin-top: 16px; font-size: .8rem; color: #7a5c00;
+  }
   .card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -280,6 +306,100 @@ const SECTIONS = [
   }
 ];
 
+// ====== WHO'S WHO (from AD Runsheet tab, roster table at row 13) ======
+const ROSTER = [
+  { group: "Bridesmaids", members: [
+    {name:"Vic", roles:"Table Decor (day before), Dinner Speech, Corsages, Boutonnieres", carries:"Actual Day Logistics, Corsages, Boutonnieres"},
+    {name:"Kim", roles:"Table Decor (day before), Vendor Liaison, Bride's helper", carries:"LTM's stuff"},
+    {name:"Poh", roles:"Social Media, Church phototaking", carries:"LTM's Phone, Charger"},
+    {name:"Karen", roles:"Bridesmaid bouquets designer, Dance, wedding rings", carries:"Wedding rings"},
+    {name:"Ching Yee", roles:"Receptionist (Church, Dinner), Angpow for vendors", carries:"Vendor Angpows, Guestlist"}
+  ]},
+  { group: "Groomsmen", members: [
+    {name:"Yi Ren", roles:"Logistics IC, Receptionist (Church), Dinner Phototaking", carries:"Guestlist"},
+    {name:"Cliff", roles:"Driver, Church AV, VC", carries:""},
+    {name:"Daryl", roles:"Choreo, Receptionist (Dinner)", carries:"Guestlist"},
+    {name:"Tsao", roles:"Worship leader, dinner AV, VC", carries:""},
+    {name:"Alex", roles:"Logistics IC, parking (reserve parking for vendors)", carries:""}
+  ]},
+  { group: "Siblings", members: [
+    {name:"Julian", roles:"Open car door, church angpow box keeper, tea ceremony", carries:""},
+    {name:"Clifford", roles:"Dinner angpow box keeper, tea ceremony", carries:""}
+  ]},
+  { group: "Emcees, Band & Others", members: [
+    {name:"Sam & Trish", roles:"Emcees — church ceremony, lunch & dinner", carries:""},
+    {name:"Esna & Winx", roles:"Band — church ceremony", carries:""},
+    {name:"Shimone", roles:"Usher — church & lunch", carries:""},
+    {name:"Pastor Isaac", roles:"Officiant", carries:""},
+    {name:"PG & VG", roles:"Photographer & Videographer", carries:""}
+  ]}
+];
+const WHO_TAB = "Who's Who";
+
+// ====== EMCEE SCRIPT (Sam & Trish only) ======
+const SCRIPT_TAB = "Emcee Script";
+const EMCEES = "Sam & Trish";
+const SCRIPT = {
+  church: [
+    {t:"10:45AM", s:"Sam", x:"Good morning everyone! The ceremony will begin in about 15 minutes, so please go ahead and find a seat."},
+    {s:"Trish", x:"While you're settling in, a few quick reminders. Please switch your phones to silent mode so the ceremony isn't interrupted."},
+    {s:"Sam", x:"Photos and videos are very welcome though! If you're posting today, remember to tag Christon and Michelle in your posts and stories."},
+    {s:"Trish", x:"The nearest washrooms are at [washroom location], so do make a quick trip now if you need one."},
+    {s:"Sam", x:"Thank you, and we'll be back very soon to get things started!"},
+    {t:"11:00AM", s:"cue", x:"Doors close. Wedding teaser video plays (Cliff cues)."},
+    {t:"11:01AM", s:"Sam", x:"Good morning, ladies and gentlemen, and a very warm welcome to the wedding of Christon and Michelle!"},
+    {s:"Trish", x:"I'm Trish, and this is Sam, and we'll be your emcees this morning. And what a date to get married: the 8th of August, 2026. 8.8.26!"},
+    {s:"Sam", x:"On behalf of Christon, Michelle, and both their families, thank you all for being here. It means the world to them that you're spending this morning celebrating with them."},
+    {s:"Trish", x:"In a moment, the wedding party will make their way in. Let's give them a warm welcome."},
+    {t:"11:05AM", s:"Sam", x:"First up, please welcome our adorable flower boy and page girl! [doors open, kids walk in with rings and petals]"},
+    {t:"11:06AM", s:"Trish", x:"Next, let's welcome Michelle's lovely bridesmaids! [bridesmaids walk in]"},
+    {t:"11:08AM", s:"Sam", x:"And now, the moment we've all been waiting for. Everyone, please rise, and let's welcome our beautiful bride, Michelle, and her father! [all rise, bride marches in, doors close behind]"},
+    {t:"11:10AM", s:"Trish", x:"[once bride reaches the front] Please remain standing as we begin with a time of praise and worship. [hand over to band: \"Your Love Never Fails\", \"Through It All\"]"},
+    {t:"11:20AM", s:"cue", x:"Pastor Isaac shares the message. Emcees stand by; no lines until after the march out."},
+    {t:"11:35AM", s:"cue", x:"Vows and exchange of rings (Kim passes rings to Pastor Isaac)."},
+    {t:"11:45AM", s:"cue", x:"Christon & Michelle march out. Tsao and Daryl prep guitar and keyboard for the song performance."},
+    {t:"11:50AM", s:"Sam", x:"While we get ready to welcome the couple back in, here's a little treat. Ever wondered what Christon and Michelle were like as kids?"},
+    {s:"Trish", x:"Well, wonder no more. Sit back and enjoy this look at the two of them growing up, before their paths finally crossed. [childhood montage plays]"},
+    {t:"11:55AM", s:"Sam", x:"[after montage] Weren't they adorable? Now, ladies and gentlemen, please put your hands together and welcome back, for the very first time as husband and wife, Mr and Mrs Yow: Christon and Michelle! [couple walks in]"},
+    {s:"Trish", x:"And they're not done yet. These two have prepared something special for you. Christon, Michelle, the stage is yours! [couple performs their song]"},
+    {t:"12:00PM", s:"Sam", x:"[after the song] Wow. Let's hear it one more time for our newlyweds! And before we let them off the stage, Christon and Michelle would like to say a few words."},
+    {t:"12:10PM", s:"Trish", x:"Thank you, Christon and Michelle. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence truly made this celebration complete."},
+    {s:"Sam", x:"Before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. May we have the family members come up first?"},
+    {s:"Trish", x:"After your photo, please make your way to the Fairfield Methodist School canteen, right next door, where lunch is served. Our ushers will point you in the right direction. See you there!"},
+    {s:"cue", x:"Emcees read out the photo-taking sequence from the screen. Shimone ushers guests to FMS(P) canteen."}
+  ],
+  dinner: [
+    {t:"6:30PM", s:"cue", x:"Emcees arrive for AV and mic test during tea ceremony setup."},
+    {t:"6:55PM", s:"Trish", x:"Good evening everyone! Dinner is about to begin, so please make your way to your seats. Thank you!"},
+    {t:"7:00PM", s:"Sam", x:"Good evening, ladies and gentlemen, and welcome to the wedding dinner of Christon and Michelle!"},
+    {s:"Trish", x:"I'm Trish, and this is Sam. For those who were with us at the church this morning, welcome back. And if this is your first stop today, you've arrived just in time for the party."},
+    {s:"Sam", x:"You might be sitting with some new faces tonight, so take a moment to say hello to your table. Your name, how you know the couple, and your best embarrassing story about them. Kidding. Maybe."},
+    {s:"Trish", x:"In a few minutes, our newlyweds will make their grand entrance, so warm up those hands and get ready!"},
+    {t:"7:15PM", s:"Sam", x:"Ladies and gentlemen, please rise! Let's give the biggest welcome of the night to the stars of the evening, Mr and Mrs Yow: Christon and Michelle! [couple marches in to song]"},
+    {s:"Trish", x:"[once couple is seated] Thank you, everyone, please be seated. And with that, dinner is served. Enjoy!"},
+    {t:"7:20PM", s:"cue", x:"1st and 2nd dishes served. Wedding playlist loops in the background."},
+    {t:"7:40PM", s:"Sam", x:"I hope everyone's enjoying the food so far. Now, someone who knows Michelle very well would like to share a few words. Please welcome bridesmaid Vic to the stage!"},
+    {s:"Trish", x:"[after speech] Thank you, Vic, that was lovely. Please continue enjoying your dinner, and stay tuned, because we have a game coming up soon."},
+    {t:"8:00PM", s:"Trish", x:"Alright everyone, time to put down your chopsticks for a moment, because it's game time! We're playing Guess the Song."},
+    {s:"Sam", x:"Here's how it works: we'll play a short clip of a song, and the first person to [raise your hand / shout it out] with the correct answer wins a prize. [confirm mechanics and prizes with Tsao]"},
+    {s:"Trish", x:"These songs all mean something to Christon and Michelle, so if you know them well, you have a head start. Ready? Let's go! [Tsao runs the game]"},
+    {s:"Sam", x:"[after game] Congratulations to all our winners! Thank you for playing along. Please continue to enjoy your dinner, and we'll be back shortly."},
+    {t:"8:20PM", s:"cue", x:"4th and 5th dishes served."},
+    {t:"8:45PM", s:"Sam", x:"Ladies and gentlemen, it's time for the moment every wedding dinner is famous for. May we invite Christon and Michelle to the stage, and everyone, please rise and charge your glasses!"},
+    {s:"Trish", x:"We'll be doing three toasts tonight, so pace yourselves. The first toast: to Christon and Michelle's everlasting love! Yaaaam... SENG!"},
+    {s:"Sam", x:"The second toast: to a lifetime of happiness together! Yaaaam... SENG!"},
+    {s:"Trish", x:"And the third toast, the loudest one: to a future filled with blessings, and maybe a few mini Christons and Michelles! Yaaaam... SENG!"},
+    {s:"Sam", x:"Thank you everyone, please be seated."},
+    {t:"8:55PM", s:"Trish", x:"And now, before the night winds down, the two people you all came for would like to say a few words. Christon, Michelle, over to you. [hand mic to couple]"},
+    {t:"9:05PM", s:"Sam", x:"[after speech] Thank you, Christon and Michelle. The couple will now go around for photos with each group, so do keep an eye out for when it's your turn. Meanwhile, please enjoy the rest of dinner."},
+    {t:"9:20PM", s:"cue", x:"7th dish served. Couple continues phototaking by social circle (Karen and Daryl coordinate)."},
+    {t:"9:30PM", s:"Trish", x:"Ladies and gentlemen, as this wonderful day comes to a close, on behalf of Christon, Michelle, and their families, thank you for celebrating with them tonight. Your presence meant everything."},
+    {s:"Sam", x:"But who says the night has to end? The party continues at Straits Bar, so come join the couple for the after-party!"},
+    {s:"Trish", x:"Christon, Michelle, and their families will be at the door to see you off. Once again, we're Sam and Trish, it's been a joy being your emcees today. Good night, everyone!"}
+  ]
+};
+let scriptPart = "church";
+
 // "All Bridal Party" expands to these people:
 const BRIDAL_PARTY = ["Vic","Kim","Poh","Karen","Chingyee","Yi Ren","Cliff","Daryl","Tsao","Alex","Chris","Mich"];
 
@@ -314,11 +434,63 @@ function esc(s) {
 
 function renderChips() {
   const el = document.getElementById("chips");
-  const tabs = identity ? ["Everyone", identity] : ["Everyone"];
-  el.innerHTML = tabs.map(p =>
-    `<button class="chip${p === selected ? " active" : ""}" onclick="selectPerson('${p.replace(/'/g,"\\'")}')">${esc(p)}</button>`
-  ).join("");
+  const tabs = identity ? ["Everyone", identity, WHO_TAB] : ["Everyone", WHO_TAB];
+  if (identity === EMCEES) tabs.push(SCRIPT_TAB);
+  el.innerHTML = tabs.map(p => {
+    const label = p === WHO_TAB ? "👥 " + p : (p === SCRIPT_TAB ? "🎤 " + p : p);
+    return `<button class="chip${p === selected ? " active" : ""}" onclick="selectPerson('${p.replace(/'/g,"\\'")}')">${esc(label)}</button>`;
+  }).join("");
   document.getElementById("identityLabel").textContent = identity || "";
+}
+
+function renderScript() {
+  const main = document.getElementById("timeline");
+  const lines = SCRIPT[scriptPart];
+  let html = "";
+  for (const l of lines) {
+    if (l.t) html += `<div class="script-time">${esc(l.t)}</div>`;
+    if (l.s === "cue") {
+      html += `<div class="line cue">${esc(l.x)}</div>`;
+    } else {
+      html += `<div class="line ${l.s.toLowerCase()}"><b>${esc(l.s)}</b>${esc(l.x)}</div>`;
+    }
+  }
+  html += `<div class="script-note">📝 <b>To fill before the day:</b> washroom location (church) &middot; Guess the Song mechanics and prizes (check with Chris &amp; Mich)</div>`;
+  html += `<a href="https://docs.google.com/document/d/1zVJcTEdFMnNUZZ2RH061jiI5IQ-J0gHS5EX-mSJ_ZLY/edit" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:12px; padding:12px; border-radius:10px; background:var(--emerald); color:#fff; font-weight:600; font-size:.9rem; text-decoration:none;">✏️ Suggest a change (opens the Google Doc)</a>
+  <div style="text-align:center; font-size:.7rem; color:var(--muted); margin-top:6px;">Edits go into the master script — this page updates after the next sync.</div>`;
+  main.innerHTML = html;
+  document.getElementById("countNote").textContent =
+    scriptPart === "church" ? "Emcee script — Church ceremony" : "Emcee script — Dinner banquet";
+  document.getElementById("jumpBar").innerHTML =
+    `<button class="jump-btn${scriptPart === "church" ? " active" : ""}" onclick="setScriptPart('church')">⛪ Church</button>` +
+    `<button class="jump-btn${scriptPart === "dinner" ? " active" : ""}" onclick="setScriptPart('dinner')">🍽️ Dinner</button>`;
+}
+
+function setScriptPart(p) {
+  scriptPart = p;
+  renderScript();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function renderWhosWho() {
+  const main = document.getElementById("timeline");
+  let html = "";
+  let count = 0;
+  for (const g of ROSTER) {
+    html += `<div class="section-title">${esc(g.group)}</div>`;
+    for (const m of g.members) {
+      count++;
+      const me = identity && m.name.toLowerCase() === identity.toLowerCase();
+      html += `<div class="card${me ? " mine" : ""}">
+        <div class="event">${esc(m.name)}${me ? ` <span class="people-tag me">you</span>` : ""}</div>
+        <div class="field"><b>Roles</b>${esc(m.roles)}</div>
+        ${m.carries ? `<div class="field"><b>In charge of</b>${esc(m.carries)}</div>` : ""}
+      </div>`;
+    }
+  }
+  main.innerHTML = html;
+  document.getElementById("countNote").textContent = `Who's who on the day (${count} people)`;
+  document.getElementById("jumpBar").innerHTML = "";
 }
 
 const JUMP_LABELS = ["Morning", "Church & Lunch", "Dinner"];
@@ -377,7 +549,9 @@ function renderTimeline() {
 function selectPerson(p) {
   selected = p;
   renderChips();
-  renderTimeline();
+  if (p === WHO_TAB) renderWhosWho();
+  else if (p === SCRIPT_TAB) renderScript();
+  else renderTimeline();
   window.scrollTo({top: 0, behavior: "smooth"});
 }
 
