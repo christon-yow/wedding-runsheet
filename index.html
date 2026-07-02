@@ -104,6 +104,7 @@
   .jump-btn.jump-0 { background: var(--morning); color: #fff; }
   .jump-btn.jump-1 { background: var(--sage-dark); color: #fff; }
   .jump-btn.jump-2 { background: var(--dinner); color: #fff; }
+  .jump-btn.jump-3 { background: #6d5285; color: #fff; }
 
   /* Emcee script */
   :root { --sam: #2563ab; --sam-bg: #e8f1fa; --trish: #c2476f; --trish-bg: #fbe9f0; }
@@ -171,6 +172,7 @@
   .ctrip-0 { --c: var(--morning); --c-bg: #f6edd7; }   /* → Church  (morning gold) */
   .ctrip-1 { --c: var(--emerald); --c-bg: var(--loc-bg); } /* → Pan Pac (church green) */
   .ctrip-2 { --c: var(--dinner);  --c-bg: #e7ecf5; }   /* → Tower Club (dinner blue) */
+  .ctrip-3 { --c: #6d5285;        --c-bg: #efeaf3; }   /* After Wedding (plum) */
   .sec-car .section-title { color: var(--c); border-color: var(--c); }
   .car-card {
     background: var(--card);
@@ -298,94 +300,102 @@ const SECTIONS = [
   {
     name: "Morning Preparations",
     events: [
-      {time:"5:30AM", event:"Mich wake up for make up", people:"Mich", duties:"", logistics:"", location:"7 One-north", remarks:""},
+      {time:"4:30AM", event:"Mich wake up for make up", people:"Mich", duties:"", logistics:"", location:"7 One-north", remarks:""},
       {time:"6:30AM", event:"Chris do make up", people:"Chris", duties:"", logistics:"", location:"Tampines 914", remarks:""},
       {time:"6:50AM", event:"Cliff drives to 914", people:"Cliff", duties:"", logistics:"Cliff's Car", location:"Tampines 914", remarks:""},
-      {time:"7:15AM", event:"Chris leaves 914 for one-north", people:"Cliff, Chris", duties:"", logistics:"Chris' AD and staycay belongings\nBridal bouquet\nAD Laptop and charger\nAngbao for Julian\nTreats for Bubbles", location:"Tampines 914", remarks:""},
-      {time:"7:15AM", event:"PG and VG arrive at One-north", people:"PG & VG", duties:"Take photos and videos", logistics:"", location:"7 One-north", remarks:""},
-      {time:"7:30AM", event:"Bridesmaids and groomsmen to arrive at One-north", people:"Daryl, Tsao, Yi Ren, Vic, Alex, Poh, Kim, Karen, Chingyee", duties:"", logistics:"", location:"7 One-north", remarks:""},
+      {time:"7:00AM", event:"PG and VG arrive at One-north", people:"PG & VG", duties:"", logistics:"", location:"7 One-north", remarks:""},
+      {time:"7:15AM", event:"Put on Veil for Bride", people:"Mich", duties:"Mich's parents to put on veil on the bride", logistics:"", location:"7 One-north", remarks:""},
+      {time:"7:15AM", event:"Chris leaves 914 for one-north", people:"Cliff, Chris", duties:"", logistics:"Chris' AD and staycay belongings\nBridal bouquet\nAD Laptop and charger\nAngbao for Julian\nAngbao for helpers (Bridal Party, Flower Girl, Page Boy, Emcees, Ushers)\nTreats for Bubbles", location:"Tampines 914", remarks:""},
+      {time:"7:30AM", event:"Bridesmaids and groomsmen to arrive at One-north", people:"Daryl, Tsao, Yi Ren, Alex, Vic, Poh, Kim, Karen, Ching Yee", duties:"", logistics:"", location:"7 One-north", remarks:""},
       {time:"7:45AM", event:"Chris and Cliff reach One-north\nJulian, Bubbles open car door", people:"Chris, Cliff, Julian, PG & VG", duties:"Julian open car door at One-north roadside (outside Lobby D)\nCliff drive to carpark", logistics:"Angbao for Julian\nTreats for Bubbles", location:"7 One-north", remarks:""},
       {time:"7:50AM", event:"Unveil the Bride", people:"Chris, Mich", duties:"", logistics:"Bridal bouquet", location:"7 One-north", remarks:""},
       {time:"8:00AM", event:"Breakfast", people:"Bridal Party, Chris, Mich", duties:"Chris order Macs breakfast the night before", logistics:"", location:"7 One-north", remarks:""},
-      {time:"8:40AM", event:"Load logistics into car", people:"Bridal Party", duties:"Refer to Cars tab for details", logistics:"", location:"7 One-north", remarks:""},
-      {time:"8:50AM", event:"Travel to One-north Park", people:"Bridal Party, PG & VG", duties:"", logistics:"", location:"One-north Park", remarks:""},
-      {time:"9:00AM", event:"Bridal Party photoshoot", people:"Bridal Party, PG & VG", duties:"", logistics:"", location:"One-north Park", remarks:""},
-      {time:"9:35AM", event:"All head to Church", people:"Bridal Party, Chris, Mich, PG & VG", duties:"Refer to Cars tab for arrangement", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"9:45AM", event:"Reach Church, Final Setup", people:"Chingyee, Alex, Yi Ren", duties:"Receptionists check overall decor and necessary logistics on reception table\nAlex block parking lot for Coffee Vendor and Mich's Fam car", logistics:"Parking cones", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"8:30AM", event:"Load logistics into car", people:"Bridal Party", duties:"Refer to Bridal Party Cars tab for details", logistics:"", location:"7 One-north", remarks:""},
+      {time:"8:40AM", event:"Travel to Field opposite AMC", people:"Bridal Party, PG & VG", duties:"Refer to Bridal Party Cars tab for details", logistics:"", location:"One-north Park", remarks:""},
+      {time:"9:00AM", event:"Bridal Party photoshoot", people:"Bridal Party, PG & VG", duties:"", logistics:"Portable fans", location:"One-north Park", remarks:""},
+      {time:"9:40AM", event:"All head to Church", people:"Bridal Party, Chris, Mich, PG & VG", duties:"Get timekeeper to keep time in case photoshoot overruns, 10.15am latest for bride and groom", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"9:45AM", event:"Reach Church , Final Setup", people:"Yi Ren, Alex, Ching Yee", duties:"Receptionists check overall decor and necessary logistics on reception table\nAlex block parking lot for Coffee Vendor and Mich's Fam car", logistics:"Parking cones", location:"Aldersgate Methodist Church", remarks:""},
       {time:"9:45AM", event:"Band and Emcees reach Church", people:"Sam & Trish, Esna, Winx, Tsao", duties:"Soundcheck", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"9:45AM", event:"Lunch Caterer Arrives (Rasel)", people:"Kim", duties:"Kim liaise with Rasel, set up a demarcation for XO Coffee and Uncle Chua", logistics:"", location:"Fairfield Methodist Pri", remarks:""},
-      {time:"10:15AM", event:"Station at Reception tables to welcome guests", people:"Chingyee, Yi Ren", duties:"Tick attendance for guests", logistics:"Laptop/ipad for Guestlist", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"10:15AM", event:"Station at Reception tables to welcome guests", people:"Yi Ren, Ching Yee", duties:"Tick attendance for guests", logistics:"Laptop/ipad for Guestlist", location:"Aldersgate Methodist Church", remarks:""},
       {time:"10:15AM", event:"Hall ready", people:"Cliff", duties:"Cliff play Spotify 8.8 Church playlist and Photos slideshow", logistics:"AD Laptop and charger\n- Spotify 8.8 Church playlist\n- Photos slideshow", location:"Aldersgate Methodist Church", remarks:""},
       {time:"10:20AM", event:"Usher ppl to Sanctuary", people:"Shimone, Joyce", duties:"Shimone station at Level 1 social hall to usher guests up\nJoyce station at Level 2 Sanctuary entrance", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"10:45AM", event:"XO Coffee Cart to Arrive", people:"Kim", duties:"Contact Kim if need help", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"10:45AM", event:"Guests take their seats", people:"Sam & Trish", duties:"Emcees remind all to take their seats", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"10:50AM", event:"Gather Bride, Father, Bridesmaids, Flower Girl, Page Boy outside hall", people:"Vic", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"10:55AM", event:"Doors Close and Keep Angbao Box", people:"Chingyee, Yi Ren", duties:"Pass angbao box to Julian to keep in SMJ166Z", logistics:"Angbao box", location:"Aldersgate Methodist Church", remarks:""}
+      {time:"10:55AM", event:"Doors Close and Keep Angbao Box", people:"Yi Ren, Ching Yee", duties:"Pass angbao box to Julian to keep in SMJ166Z", logistics:"Angbao box", location:"Aldersgate Methodist Church", remarks:""}
     ]
   },
   {
     name: "Holy Matrimony & Lunch",
     events: [
-      {time:"11:00AM", event:"Line up for walk in", people:"Vic, Poh, Kim, Karen, Chingyee", duties:"Bride, Father, Bridesmaids, Flower Girl, Page Boy outside hall, Vic to help with gown train", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:00AM", event:"Line up for walk in", people:"Vic, Poh, Kim, Karen, Ching Yee, Mich", duties:"Bride, Father, Bridesmaids, Flower Girl, Page Boy outside hall, Vic to help with gown train", logistics:"Flower basket\nPetals", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:00AM", event:"Ceremony Start", people:"Sam & Trish", duties:"Emcees start", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:01AM", event:"Play wedding teaser video", people:"Cliff", duties:"Cliff play Pre-wedding video", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:03AM", event:"Door open\nFlower Boy Page Girl walk in", people:"Cliff, Alex, Yi Ren", duties:"Cliff play March-in song\nYiren and Alex open doors", logistics:"Flower basket\nPetals", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:04AM", event:"Bridesmaids walk in", people:"Vic, Poh, Karen, Kim, Chingyee", duties:"", logistics:"Bridesmaids bouquet", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:01AM", event:"Play wedding teaser video", people:"Cliff", duties:"Cliff play Pre-wedding video", logistics:"Pre-wedding video", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:03AM", event:"Door open\nFlower Boy Page Girl walk in", people:"Cliff, Alex, Yi Ren", duties:"Cliff play March-in song and show cover slide\nYiren and Alex open doors", logistics:"Cover slide", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:04AM", event:"Bridesmaids walk in", people:"Vic, Poh, Kim, Karen, Ching Yee", duties:"", logistics:"Bridesmaids bouquet", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:05AM", event:"Bride and Father walk in", people:"Mich, Yi Ren, Alex", duties:"Yiren and Alex close doors", logistics:"Bridal bouquet", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:07AM", event:"Father pass Bride to Groom", people:"Pastor Isaac", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:10AM", event:"Praise and Worship", people:"Cliff, Tsao, Esna, Winx", duties:"Cliff show lyrics\n1. Your Love Never Fails\n2. Through It All", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:20AM", event:"Pastor Sharing", people:"Pastor Isaac", duties:"Ecclesiastes 4:9-12", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:35AM", event:"Vows", people:"Karen, Pastor Isaac, Chris, Mich", duties:"Karen pass rings to Pastor Isaac", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:10AM", event:"Praise and Worship", people:"Cliff, Tsao, Esna, Winx", duties:"Cliff show lyrics\n1. Your Love Never Fails \n2. Through It All", logistics:"Lyrics slides", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:20AM", event:"Pastor Sharing", people:"Pastor Isaac, Cliff", duties:"Ecclesiastes 4:9-12\nCliff show cover slide", logistics:"Cover slide", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:35AM", event:"Vows", people:"Karen, Pastor Isaac, Chris, Mich", duties:"Karen pass rings to Pastor Isaac", logistics:"Rings", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:45AM", event:"Uncle Chua Ice Cream to Arrive", people:"Kim", duties:"Contact Kim if need help", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:45AM", event:"C&M March out", people:"Sam & Trish, Chris, Mich, Cliff", duties:"Cliff play March Out music", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:47AM", event:"C&M Re-entry", people:"Daryl, Karen, Sam & Trish, Chris, Mich, Cliff", duties:"Cliff play Re-entry music\nDaryl and Karen Dance\nChris and Mich March in", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:45AM", event:"C&M March out", people:"Sam & Trish, Chris, Mich, Cliff", duties:"Cliff play March Out music", logistics:"March out music", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:47AM", event:"C&M Re-entry", people:"Daryl, Karen, Sam & Trish, Chris, Mich, Cliff", duties:"Cliff play Re-entry music\nDaryl and Karen Dance\nChris and Mich March in", logistics:"Re-entry music", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:50AM", event:"Childhood Montage", people:"Sam & Trish, Cliff", duties:"Cliff play Childhood Montage video", logistics:"Childhood Montage", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:50AM", event:"Prepare Music Setup", people:"Tsao, Winx", duties:"Tsao prep guitar\nWinx prep keyboard", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:55AM", event:"C&M TIBTO", people:"Cliff, Chris, Mich", duties:"Cliff show lyrics", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:50AM", event:"Prepare Music Setup", people:"Tsao, Winx", duties:"Tsao prep guitar\nWinx prep keyboard", logistics:"Guitar", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:55AM", event:"C&M TIBTO", people:"Cliff, Chris, Mich", duties:"Cliff show photos slideshow\nAttach VG's mic to mic", logistics:"Photos slideshow", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:00PM", event:"C&M Speeches", people:"Chris, Mich", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"12:10PM", event:"Phototaking & Lunch", people:"Sam & Trish, Shimone, Joyce, Poh", duties:"Usher guests to FMS(P) Canteen\nEmcees prep guests for photo", logistics:"Phototaking Slides", location:"Aldersgate Methodist Church, Fairfield Methodist Pri", remarks:""},
-      {time:"12:40PM", event:"All to eat and mingle with guests", people:"Mich, Chris, Bridal Party", duties:"", logistics:"", location:"Fairfield Methodist Pri", remarks:""},
+      {time:"12:10PM", event:"Phototaking & Lunch", people:"Sam & Trish, Shimone, Joyce, Poh, Cliff, PG & VG", duties:"Usher guests to FMS(P) Canteen\nEmcees prep guests for photo\nCliff play 8.8 Spotify Dinner playlist", logistics:"Phototaking Slides", location:"Aldersgate Methodist Church, Fairfield Methodist Pri", remarks:""},
+      {time:"12:10PM", event:"Ching to pass Pastor Isaac angbao", people:"Ching Yee", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"12:40PM", event:"Pack laptop and guitar", people:"Cliff, Tsao, Daryl", duties:"Cliff keep Laptop and charger in Daryl's car\nTsao keep guitar in Daryl's car", logistics:"AD laptop and charger\nGuitar", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"12:40PM", event:"All to eat and mingle with guests", people:"Mich, Chris, Bridal Party", duties:"Mich and Chris to give Nat and Reuel angbao", logistics:"", location:"Fairfield Methodist Pri", remarks:""},
+      {time:"1:00PM", event:"PG and VG leave", people:"PG & VG", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"1:45PM", event:"Hall Tear Down", people:"Bridal Party", duties:"Bridal party help tear down\nAlex arrange all logistics accounted for\nYi Ren arrange for Lalamove to One-north\nDaryl to take back Dinner decor items", logistics:"Logistics", location:"Aldersgate Methodist Church", remarks:""},
       {time:"2:15PM", event:"Lunch Caterers Tear down", people:"Kim", duties:"Contact facilities manager once tear down & clean up done at church\nClear lunch and vacate FMS(P)", logistics:"", location:"Aldersgate Methodist Church, Fairfield Methodist Pri", remarks:""},
-      {time:"2:30PM", event:"Cliff drives Chris & Mich to Pan Pac", people:"Chris, Mich, Cliff", duties:"Mich's Dad to check in, pass Chris room key", logistics:"", location:"Pan Pacific Marina", remarks:""},
+      {time:"2:30PM", event:"Cliff drives Chris & Mich to Pan Pac", people:"Chris, Mich, Cliff", duties:"Meet Mich's Dad to check in\nChris collect room key from Mich's Dad\nC&M take out staycay belongings and angbao box from Cliff's car", logistics:"Chris' AD and staycay belongings\nAngbao box", location:"Pan Pacific Marina", remarks:""},
       {time:"3:00PM", event:"Bathe and freshen up", people:"Chris, Mich", duties:"Chris & Mich empty angbaos into Bridal Suite safe", logistics:"", location:"Pan Pacific Marina", remarks:""},
-      {time:"3:15PM", event:"Mich to start Make Up @ Pan Pac", people:"Mich", duties:"3.30-5.30pm", logistics:"", location:"Pan Pacific Marina", remarks:""},
+      {time:"3:15PM", event:"Mich to start Make Up @ Pan Pac", people:"Mich", duties:"3.15-5.15pm", logistics:"", location:"Pan Pacific Marina", remarks:""},
       {time:"3:30PM", event:"Mums' Make up @ Tower Club", people:"", duties:"Mich's Mum 3.30-4.30pm\nChris' Mum 4.30-5.30pm", logistics:"", location:"Tower Club", remarks:""},
       {time:"5:00PM", event:"Julian drives to Pan Pac", people:"Julian", duties:"Julian fetch Dad and Auntie Yati", logistics:"", location:"Pan Pacific Marina", remarks:""},
-      {time:"5:20PM", event:"Head to Tower Club", people:"Julian, Chris, Mich", duties:"Bring Angbao box, Chris to take room key", logistics:"Angbao box", location:"Pan Pacific Marina, Tower Club", remarks:""},
-      {time:"5:45PM", event:"PG & VG arrive at Tower Club", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""}
+      {time:"5:20PM", event:"Head to Tower Club", people:"Julian, Chris, Mich", duties:"Bring Angbao box, Chris to take room key", logistics:"Angbao box", location:"Pan Pacific Marina, Tower Club", remarks:""}
     ]
   },
   {
     name: "Dinner Banquet",
     events: [
-      {time:"6:00PM", event:"Tea Ceremony", people:"Julian, Clifford, Chris, Mich, PG & VG", duties:"Clifford & Julian to assist with tea plates & angbaos and calling order of relatives. Angbaos to be deposited in dinner angbao box", logistics:"Tower Club to provide teacups and tea", location:"Tower Club", remarks:""},
-      {time:"6:00PM", event:"Restaurant Set Up", people:"Sam & Trish, Cliff, Tsao, Vic", duties:"Cliff bring laptop for AV VC set up\nEmcees Mic test\n(Optional) Vic to test wedding speech media if needed", logistics:"Laptop and charger", location:"Tower Club", remarks:""},
-      {time:"6:00PM", event:"Reception Set Up", people:"Chingyee, Daryl", duties:"", logistics:"Dinner Decor", location:"Tower Club", remarks:""},
-      {time:"6:15PM", event:"Station at Reception table to welcome guests", people:"Chingyee, Daryl", duties:"", logistics:"Laptop/ipad for Guestlist", location:"Tower Club", remarks:""},
+      {time:"5:45PM", event:"C&M arrive at Tower Club", people:"Julian, Chris, Mich", duties:"Pass angbao box to reception", logistics:"Angbao box", location:"Tower Club", remarks:""},
+      {time:"5:45PM", event:"PG & VG arrive at Tower Club", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"5:45PM", event:"Reception Set Up", people:"Daryl, Ching Yee", duties:"", logistics:"Dinner Decor\nAngbao box", location:"Tower Club", remarks:"Check if Tower Club has easel stand"},
+      {time:"6:00PM", event:"Emcees and VC to arrive for Restaurant Set Up", people:"Sam & Trish, Tsao, Vic", duties:"AV, VC set up\nEmcees Mic test\n(Optional) Vic to test wedding speech media if needed", logistics:"AD Laptop and charger", location:"Tower Club", remarks:""},
+      {time:"6:00PM", event:"Tea Ceremony", people:"Chris, Mich, PG & VG, Mich Chin, Auntie Yati, Julian, Clifford", duties:"Mich Chin and Auntie Yati to assist with tea plates & pouring of tea. \nMich Chin will keep the angbaos, to be deposited in dinner angbao box later.\nClifford and Julian to call order of relatives.", logistics:"Tower Club to provide teacups and tea", location:"Tower Club", remarks:"Buy disposable cups"},
+      {time:"6:15PM", event:"Station at Reception table to welcome guests", people:"Daryl, Ching Yee", duties:"", logistics:"Laptop/ipad for Guestlist", location:"Tower Club", remarks:""},
+      {time:"6:30PM", event:"Tea Ceremony ends", people:"Chris, Mich, PG & VG, Mich Chin, Auntie Yati, Julian, Clifford", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"6:30PM", event:"Restaurant Ready", people:"Tsao", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"AD Laptop and charger\n- Spotify 8.8 Dinner playlist\n- Photos slideshow", location:"Tower Club", remarks:""},
-      {time:"6:55PM", event:"Cliff keep Angbao Box", people:"Cliff", duties:"Take Angbao box from Receptionists and keep in car", logistics:"Angbao Box", location:"Tower Club", remarks:""},
       {time:"7:00PM", event:"C&M prepare to walk in", people:"Chris, Mich", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"7:10PM", event:"Start Dinner", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"7:15PM", event:"C&M walk in", people:"Tsao, Chris, Mich", duties:"Tsao play Pre-wedding video\nTsao play Dinner entrance song", logistics:"Laptop and charger\n- Spotify 8.8 Dinner playlist\n- Pre-wedding video", location:"Tower Club", remarks:""},
-      {time:"7:20PM", event:"1st Dish", people:"", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"", location:"Tower Club", remarks:""},
+      {time:"7:20PM", event:"1st dish", people:"", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"", location:"Tower Club", remarks:""},
       {time:"7:35PM", event:"2nd Dish", people:"Sam & Trish, Tsao", duties:"Tsao replay Childhood Montage (play while eating)", logistics:"Childhood Montage", location:"Tower Club", remarks:""},
       {time:"7:40PM", event:"Vic's Speech", people:"Vic", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"7:50PM", event:"3rd Dish", people:"", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"", location:"Tower Club", remarks:""},
       {time:"8:00PM", event:"Game", people:"Sam & Trish, Tsao", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"8:20PM", event:"4th Dish", people:"", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"", location:"Tower Club", remarks:""},
-      {time:"8:35PM", event:"5th Dish", people:"", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"8:45PM", event:"Yam Seng", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"8:55PM", event:"Couple Speech", people:"Mich, Chris", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:05PM", event:"Phototaking Start", people:"Chris, Mich, Yi Ren, Kim", duties:"Relatives take photos at their tables\nFriends take photos on stage", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:25PM", event:"Yam Seng", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:35PM", event:"Couple Speech", people:"Mich, Chris", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"8:45PM", event:"5th Dish", people:"", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:05PM", event:"Phototaking Start", people:"Chris, Mich, Yi Ren, Kim, PG & VG", duties:"Relatives take photos at their tables\nFriends take photos on stage", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:05PM", event:"6th Dish", people:"Tsao", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:15PM", event:"VG leaves", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:20PM", event:"7th Dish", people:"", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:30PM", event:"Emcees to conclude ceremony and direct people to after party at Straits Bar", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:30PM", event:"Fam to stand by door and greet guests", people:"Chris, Mich, Clifford", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:40PM", event:"Head to Straits Bar", people:"", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:45PM", event:"Tear down and keep Dinner Decor", people:"Daryl, Cliff", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:45PM", event:"Tsao pass Laptop and charger", people:"Tsao, Cliff", duties:"Tsao pass Laptop and charger to Cliff to put in car", logistics:"Laptop and charger", location:"Tower Club", remarks:""},
-      {time:"9:45PM", event:"Comb tables to ensure no valuables left behind\nHead to Straits Bar", people:"Bridal Party", duties:"", logistics:"", location:"Tower Club", remarks:""}
+      {time:"9:30PM", event:"Emcees to conclude ceremony and direct people to after party at straits bar", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:30PM", event:"Fam to stand by door and greet guests", people:"Chris, Mich, Clifford, Julian", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:45PM", event:"C&M head to Straits Bar", people:"Chris, Mich", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:45PM", event:"Tear down and keep Dinner decor", people:"Alex, Daryl, Julian", duties:"Put Dinner decor in Julian's car", logistics:"Dinner decor", location:"Tower Club", remarks:""},
+      {time:"9:30PM", event:"Keep AD laptop and angbao box", people:"Cliff, Tsao, Yi Ren", duties:"Put in Cliff's car", logistics:"AD laptop and charger\nAngbao box", location:"Tower Club", remarks:""},
+      {time:"9:45PM", event:"PG leaves", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:45PM", event:"Comb tables to ensure no valuables left behind\nHead to Straits Bar for afterparty", people:"Bridal Party", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"11:00PM", event:"Send Chris and Mich to Pan Pac", people:"Cliff, Chris, Mich", duties:"Take Angbao box and AD Laptop and charger", logistics:"Angbao box\nAD Laptop and charger", location:"Tower Club, Pan Pacific Marina", remarks:""}
     ]
   }
 ];
@@ -436,22 +446,28 @@ const WHO_TAB = "Who's Who";
 // Each rider's `id` maps to a selectable identity so the viewer's car is highlighted.
 const CARS_TAB = "Cars";
 const CARS = [
-  { trip: "→ Church", note: "From One-north. Load up at 8:40AM · depart for photos, then drive to church.", cars: [
+  { trip: "→ Church", note: "From One-north. Load up at 8:40AM · depart for photos, then drive to church. Church logs to be Lalamoved to 09-20.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["AD Laptop and charger"] },
     { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true},{n:"Tsao",id:"Tsao"}], carries:["Angbaos for games (Yi Ren)"] },
     { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true},{n:"Alex",id:"Alex"},{n:"Photographer",id:"PG & VG"},{n:"Videographer",id:"PG & VG"}], carries:[] },
     { car:"Car 4", riders:[{n:"Poh Gin Teng",id:"Poh",drive:true},{n:"Kim",id:"Kim"},{n:"Ching",id:"Chingyee"},{n:"Vic",id:"Vic"},{n:"Karen",id:"Karen"}], carries:["Wedding Rings (Karen)","Angbaos for helpers/vendors (Ching)","Mich's emergency kit (Vic)"] },
-    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Jonathan Ng"},{n:"Chai Tin"},{n:"Auntie Yati"}], carries:["Mich's & Chris' staycay belongings and toiletries","Chris' AD belongings (dinner clothing, water bottle, charger)","Mich's AD belongings (dinner gown, slippers)"] }
+    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Chai Tin"},{n:"Auntie Yati"}], carries:["Mich's & Chris' staycay belongings and toiletries","Chris' AD belongings (dinner clothing, water bottle, charger)","Mich's AD belongings (dinner gown, slippers)","MUA Angbao"] }
   ]},
   { trip: "→ Pan Pac", note: "From church. Only the bridal car and Car 5 make this trip.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:[] },
-    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Jonathan Ng"}], carries:["Angbao box (with church angbaos)","Mich's & Chris' staycay belongings and toiletries","Chris' AD belongings","Mich's AD belongings"] }
+    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"}], carries:["Angbao box (with church angbaos)","Mich's & Chris' staycay belongings and toiletries","Chris' AD belongings","Mich's AD belongings"] }
   ]},
   { trip: "→ Tower Club", note: "Evening run from Pan Pac to Tower Club.", cars: [
-    { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true}], carries:["AD Laptop and charger"] },
+    { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true}], carries:[] },
     { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:["Angbaos for games (Yi Ren)"] },
     { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:["Dinner decor (easel, foam board)"] },
-    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Jonathan Ng"},{n:"Auntie Yati"},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Angbao box","Chris' AD belongings","Mich's AD belongings"] }
+    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Auntie Yati"},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Angbao box","Chris' AD belongings","Mich's AD belongings"] }
+  ]},
+  { trip: "After Wedding", note: "Packing up and heading off after the celebration.", cars: [
+    { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Angbao Box","AD Laptop and charger"] },
+    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:[] },
+    { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:[] },
+    { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Mich's Mum"}], carries:["Dinner decor (A2 poster, foam board)"] }
   ]}
 ];
 
