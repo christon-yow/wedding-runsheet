@@ -194,6 +194,12 @@
   .car-carries b { color: var(--muted); font-weight: 600; font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 2px; }
   .car-intro { font-size: .8rem; color: var(--muted); padding: 4px 4px 0; }
 
+  /* Game Segment tab */
+  .game-row { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--dinner); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .game-no { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: var(--dinner); color: #fff; font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .game-song { flex: 1 1 auto; font-size: .9rem; font-weight: 600; }
+  .game-cue { flex: 0 0 auto; font-size: .78rem; font-weight: 700; color: var(--dinner); background: #e7ecf5; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+
   /* Landing page */
   #landing {
     position: fixed; inset: 0; z-index: 100;
@@ -311,8 +317,8 @@ const SECTIONS = [
       {time:"7:50AM", event:"Unveil the Bride", people:"Chris, Mich", duties:"", logistics:"Bridal bouquet", location:"7 One-north", remarks:""},
       {time:"8:00AM", event:"Breakfast", people:"Bridal Party, Chris, Mich", duties:"Chris order Macs breakfast the night before", logistics:"", location:"7 One-north", remarks:""},
       {time:"8:30AM", event:"Load logistics into car", people:"Bridal Party", duties:"Refer to Bridal Party Cars tab for details", logistics:"", location:"7 One-north", remarks:""},
-      {time:"8:40AM", event:"Travel to Field opposite AMC", people:"Bridal Party, PG & VG", duties:"Refer to Bridal Party Cars tab for details", logistics:"", location:"One-north Park", remarks:""},
-      {time:"9:00AM", event:"Bridal Party photoshoot", people:"Bridal Party, PG & VG", duties:"", logistics:"Portable fans", location:"One-north Park", remarks:""},
+      {time:"8:40AM", event:"Travel to Wilmar for phototaking", people:"Bridal Party, PG & VG", duties:"Refer to Bridal Party Cars tab for details", logistics:"", location:"Wilmar", remarks:""},
+      {time:"9:00AM", event:"Bridal Party photoshoot", people:"Bridal Party, PG & VG", duties:"", logistics:"Portable fans", location:"Wilmar", remarks:""},
       {time:"9:40AM", event:"All head to Church", people:"Bridal Party, Chris, Mich, PG & VG", duties:"Get timekeeper to keep time in case photoshoot overruns, 10.15am latest for bride and groom", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"9:45AM", event:"Reach Church , Final Setup", people:"Yi Ren, Alex, Ching Yee", duties:"Receptionists check overall decor and necessary logistics on reception table\nAlex block parking lot for Coffee Vendor and Mich's Fam car", logistics:"Parking cones", location:"Aldersgate Methodist Church", remarks:""},
       {time:"9:45AM", event:"Band and Emcees reach Church", people:"Sam & Trish, Esna, Winx, Tsao", duties:"Soundcheck", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
@@ -345,7 +351,8 @@ const SECTIONS = [
       {time:"11:50AM", event:"Childhood Montage", people:"Sam & Trish, Cliff", duties:"Cliff play Childhood Montage video", logistics:"Childhood Montage", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:50AM", event:"Prepare Music Setup", people:"Tsao, Winx", duties:"Tsao prep guitar\nWinx prep keyboard", logistics:"Guitar", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:55AM", event:"C&M TIBTO", people:"Cliff, Chris, Mich", duties:"Cliff show photos slideshow\nAttach VG's mic to mic", logistics:"Photos slideshow", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"12:00PM", event:"C&M Speeches", people:"Chris, Mich", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"12:00PM", event:"C&M Speeches", people:"Chris, Mich, Poh", duties:"Poh to pass Mich her phone", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"12:10PM", event:"Emcees to say grace before lunch", people:"Sam & Trish", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:10PM", event:"Phototaking & Lunch", people:"Sam & Trish, Shimone, Joyce, Poh, Cliff, PG & VG", duties:"Usher guests to FMS(P) Canteen\nEmcees prep guests for photo\nCliff play 8.8 Spotify Dinner playlist", logistics:"Phototaking Slides", location:"Aldersgate Methodist Church, Fairfield Methodist Pri", remarks:""},
       {time:"12:10PM", event:"Ching to pass Pastor Isaac angbao", people:"Ching Yee", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:40PM", event:"Pack laptop and guitar", people:"Cliff, Tsao, Daryl", duties:"Cliff keep Laptop and charger in Daryl's car\nTsao keep guitar in Daryl's car", logistics:"AD laptop and charger\nGuitar", location:"Aldersgate Methodist Church", remarks:""},
@@ -366,9 +373,9 @@ const SECTIONS = [
     events: [
       {time:"5:45PM", event:"C&M arrive at Tower Club", people:"Julian, Chris, Mich", duties:"Pass angbao box to reception", logistics:"Angbao box", location:"Tower Club", remarks:""},
       {time:"5:45PM", event:"PG & VG arrive at Tower Club", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"5:45PM", event:"Reception Set Up", people:"Daryl, Ching Yee", duties:"", logistics:"Dinner Decor\nAngbao box", location:"Tower Club", remarks:"Check if Tower Club has easel stand"},
+      {time:"5:45PM", event:"Reception Set Up", people:"Daryl, Ching Yee", duties:"", logistics:"Dinner Decor\nAngbao box", location:"Tower Club", remarks:""},
       {time:"6:00PM", event:"Emcees and VC to arrive for Restaurant Set Up", people:"Sam & Trish, Tsao, Vic", duties:"AV, VC set up\nEmcees Mic test\n(Optional) Vic to test wedding speech media if needed", logistics:"AD Laptop and charger", location:"Tower Club", remarks:""},
-      {time:"6:00PM", event:"Tea Ceremony", people:"Chris, Mich, PG & VG, Mich Chin, Auntie Yati, Julian, Clifford", duties:"Mich Chin and Auntie Yati to assist with tea plates & pouring of tea. \nMich Chin will keep the angbaos, to be deposited in dinner angbao box later.\nClifford and Julian to call order of relatives.", logistics:"Tower Club to provide teacups and tea", location:"Tower Club", remarks:"Buy disposable cups"},
+      {time:"6:00PM", event:"Tea Ceremony", people:"Chris, Mich, PG & VG, Mich Chin, Auntie Yati, Julian, Clifford", duties:"Mich Chin and Auntie Yati to assist with tea plates & pouring of tea. \nMich Chin will keep the angbaos, to be deposited in dinner angbao box later.\nClifford and Julian to call order of relatives.", logistics:"Tower Club to provide teacups and tea", location:"Tower Club", remarks:""},
       {time:"6:15PM", event:"Station at Reception table to welcome guests", people:"Daryl, Ching Yee", duties:"", logistics:"Laptop/ipad for Guestlist", location:"Tower Club", remarks:""},
       {time:"6:30PM", event:"Tea Ceremony ends", people:"Chris, Mich, PG & VG, Mich Chin, Auntie Yati, Julian, Clifford", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"6:30PM", event:"Restaurant Ready", people:"Tsao", duties:"Tsao play Spotify 8.8 Dinner playlist and Photos slideshow", logistics:"AD Laptop and charger\n- Spotify 8.8 Dinner playlist\n- Photos slideshow", location:"Tower Club", remarks:""},
@@ -395,7 +402,7 @@ const SECTIONS = [
       {time:"9:30PM", event:"Keep AD laptop and angbao box", people:"Cliff, Tsao, Yi Ren", duties:"Put in Cliff's car", logistics:"AD laptop and charger\nAngbao box", location:"Tower Club", remarks:""},
       {time:"9:45PM", event:"PG leaves", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:45PM", event:"Comb tables to ensure no valuables left behind\nHead to Straits Bar for afterparty", people:"Bridal Party", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"11:00PM", event:"Send Chris and Mich to Pan Pac", people:"Cliff, Chris, Mich", duties:"Take Angbao box and AD Laptop and charger", logistics:"Angbao box\nAD Laptop and charger", location:"Tower Club, Pan Pacific Marina", remarks:""}
+      {time:"12:00AM", event:"Send Chris and Mich to Pan Pac", people:"Cliff, Chris, Mich", duties:"Take Angbao box and AD Laptop and charger", logistics:"Angbao box\nAD Laptop and charger", location:"Tower Club, Pan Pacific Marina", remarks:""}
     ]
   }
 ];
@@ -403,18 +410,18 @@ const SECTIONS = [
 // ====== WHO'S WHO (from Bridal Party Responsibilities tab) ======
 const ROSTER = [
   { group: "Bridesmaids", members: [
-    {name:"Vic", roles:"Table Decor (day before), Bride's helper, Dinner Speech, Flower Girl/Page Boy manager", carries:"Mich's emergency kit"},
+    {name:"Vic", roles:"Table Decor (day before), Bride's helper, Dinner Speech", carries:"Mich's emergency kit (jisulife, tissue, makeup touch up)"},
     {name:"Kim", roles:"Table Decor (day before), Vendor Liaison, Dinner Phototaking", carries:"Vendors' Contacts"},
-    {name:"Poh", roles:"Social Media, Church phototaking", carries:"Mich's phone and charger"},
-    {name:"Karen", roles:"Bridesmaid bouquets designer, Re-entry Dancer, Pass Wedding rings", carries:"Wedding Rings"},
-    {name:"Ching Yee", roles:"Church Receptionist, Dinner Receptionist, Angbao for vendors", carries:"Angbaos for helpers/vendors, Laptop/ipad for Guestlist"}
+    {name:"Poh", roles:"Social Media, Church phototaking, Flower Girl/Page Boy manager", carries:"Mich's phone and charger"},
+    {name:"Karen", roles:"Bridesmaid bouquets designer (day before), Timekeeper, Re-entry Dancer, Rings Bearer", carries:"Wedding Rings"},
+    {name:"Ching Yee", roles:"Church Receptionist, Dinner Receptionist, Angbao for vendors", carries:"Angbaos for vendors (Pst Isaac, Carol (Tower Club manager), PG, VG), Laptop/ipad for Guestlist"}
   ]},
   { group: "Groomsmen", members: [
-    {name:"Yi Ren", roles:"Church Logistics IC, Church Receptionist, Buy Dinner for PG & VG ($10 budget each), Dinner Phototaking", carries:"Laptop/ipad for Guestlist, Angbaos for game"},
-    {name:"Cliff", roles:"Driver, Church AV & VC, Take Angbao box from Daryl/Ching Yee and put in the car", carries:"AD Laptop and charger, Dinner decor"},
-    {name:"Daryl", roles:"Re-entry Dancer and Choreographer, Dinner Receptionist", carries:"Laptop/ipad for Guestlist, Carpark coupons, Dinner Decor"},
-    {name:"Tsao", roles:"Worship Leader, Dinner AV & VC", carries:"Guitar, AD Laptop and charger"},
-    {name:"Alex", roles:"Church Logistics IC, Church reserve parking for vendors", carries:""}
+    {name:"Yi Ren", roles:"Church Logistics IC, Church Receptionist, Dinner Games Logs IC", carries:"Laptop/ipad for Guestlist, Angbaos for game"},
+    {name:"Cliff", roles:"Driver, Church AV, VC", carries:"AD Laptop and charger, Dinner decor"},
+    {name:"Daryl", roles:"Re-entry Dancer and Choreographer, Buy Dinner for PG & VG (~$15 budget each), Dinner Receptionist", carries:"Laptop/ipad for Guestlist, Carpark coupons, Dinner Decor (photos, Foam Board)"},
+    {name:"Tsao", roles:"Worship Leader, Dinner AV, VC", carries:"Guitar, AD Laptop and charger"},
+    {name:"Alex", roles:"Church Logistics IC, Church reserve parking for vendors, Dinner Phototaking", carries:""}
   ]},
   { group: "Siblings", members: [
     {name:"Julian", roles:"Open car door, Church angbao box keeper, Tea ceremony helper", carries:""},
@@ -433,7 +440,7 @@ const ROSTER = [
   ]},
   { group: "Flower Girl & Page Boy", members: [
     {name:"Reuel", roles:"Page Boy", carries:""},
-    {name:"Nat", roles:"Flower Boy", carries:""}
+    {name:"Nat", roles:"Flower Girl", carries:""}
   ]},
   { group: "Officiant, Photo & Video", members: [
     {name:"Pastor Isaac", roles:"Officiant", carries:""},
@@ -448,7 +455,7 @@ const CARS_TAB = "Cars";
 const CARS = [
   { trip: "→ Church", note: "From One-north. Load up at 8:40AM · depart for photos, then drive to church. Church logs to be Lalamoved to 09-20.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["AD Laptop and charger"] },
-    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true},{n:"Tsao",id:"Tsao"}], carries:["Angbaos for games (Yi Ren)"] },
+    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true},{n:"Tsao",id:"Tsao"}], carries:["Angbaos and logs for games (Yi Ren)"] },
     { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true},{n:"Alex",id:"Alex"},{n:"Photographer",id:"PG & VG"},{n:"Videographer",id:"PG & VG"}], carries:[] },
     { car:"Car 4", riders:[{n:"Poh Gin Teng",id:"Poh",drive:true},{n:"Kim",id:"Kim"},{n:"Ching",id:"Chingyee"},{n:"Vic",id:"Vic"},{n:"Karen",id:"Karen"}], carries:["Wedding Rings (Karen)","Angbaos for helpers/vendors (Ching)","Mich's emergency kit (Vic)"] },
     { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Chai Tin"},{n:"Auntie Yati"}], carries:["Mich's & Chris' staycay belongings and toiletries","Chris' AD belongings (dinner clothing, water bottle, charger)","Mich's AD belongings (dinner gown, slippers)","MUA Angbao"] }
@@ -459,8 +466,8 @@ const CARS = [
   ]},
   { trip: "→ Tower Club", note: "Evening run from Pan Pac to Tower Club.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true}], carries:[] },
-    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:["Angbaos for games (Yi Ren)"] },
-    { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:["Dinner decor (easel, foam board)"] },
+    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:["Angbaos and logs for games (Yi Ren)"] },
+    { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:["Dinner decor (A2 poster, foam board)"] },
     { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Auntie Yati"},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Angbao box","Chris' AD belongings","Mich's AD belongings"] }
   ]},
   { trip: "After Wedding", note: "Packing up and heading off after the celebration.", cars: [
@@ -486,7 +493,8 @@ const SCRIPT = {
     {s:"Trish", x:"I'm Trish, and this is Sam, and we'll be your emcees this morning. And what a date to get married: the 8th of August, 2026. 8.8.26!"},
     {s:"Sam", x:"On behalf of Christon, Michelle, and both their families, thank you all for being here. It means the world to them that you're spending this morning celebrating with them."},
     {s:"Trish", x:"In a moment, the wedding party will make their way in. Let's give them a warm welcome."},
-    {t:"11:03AM", s:"cue", x:"Flower girl and page boy enter; bridesmaids walk in."},
+    {t:"11:03AM", s:"cue", x:"Flower girl and page boy enter."},
+    {t:"11:04AM", s:"cue", x:"Bridesmaids walk in."},
     {t:"11:05AM", s:"Sam", x:"And now, the moment we've all been waiting for. Everyone, please rise, and let's welcome our beautiful bride, Michelle, and her father! [all rise, bride marches in, doors close behind]"},
     {t:"11:10AM", s:"Trish", x:"[once bride reaches the front] Please remain standing as we begin with a time of praise and worship. [hand over to band: \"Your Love Never Fails\", \"Through It All\"]"},
     {t:"11:20AM", s:"cue", x:"Pastor Isaac shares the message. Emcees stand by; no lines until after the march out."},
@@ -498,14 +506,14 @@ const SCRIPT = {
     {s:"Trish", x:"They've prepared something special for you. Christon, Michelle, the stage is yours! [couple performs their song]"},
     {t:"12:00PM", s:"Sam", x:"[after the song] Wow. Let's hear it one more time for our newlyweds! And before we let them off the stage, Christon and Michelle would like to say a few words."},
     {t:"12:10PM", s:"Trish", x:"Thank you, Christon and Michelle. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence truly made this celebration complete."},
-    {s:"Sam", x:"Before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. May we have the family members come up first?"},
-    {s:"Trish", x:"After your photo, please make your way to the Fairfield Methodist School canteen, right next door, where lunch is served. Our ushers will point you in the right direction. See you there!"},
+    {s:"Sam", x:"There will be a lunch reception at Fairfield Methodist School canteen, right next door. We heard there's a plethora of food; a buffet spread, live laksa station, coffee cart and also an ice-cream stand. So please enjoy your lunch later and our ushers will point you in the right direction."},
+    {s:"Trish", x:"But before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. Before we invite the family members up for photos, we'd first like to take a moment to say grace and give thanks for the food and this time together."},
     {s:"cue", x:"Emcees read out the photo-taking sequence from the screen. Shimone ushers guests to FMS(P) canteen."}
   ],
   dinner: [
     {t:"6:00PM", s:"cue", x:"Emcees arrive for AV and mic test during tea ceremony setup."},
-    {t:"6:55PM", s:"Trish", x:"Good evening everyone! Dinner is about to begin, so please make your way to your seats. Thank you!"},
-    {t:"7:00PM", s:"Sam", x:"Good evening, ladies and gentlemen, and welcome to the wedding dinner of Christon and Michelle!"},
+    {t:"7:05PM", s:"Trish", x:"Good evening everyone! Dinner is about to begin, so please make your way to your seats. Thank you!"},
+    {t:"7:10PM", s:"Sam", x:"Good evening, ladies and gentlemen, and welcome to the wedding dinner of Christon and Michelle!"},
     {s:"Trish", x:"I'm Trish, and this is Sam. For those who were with us at the church this morning, welcome back. And if this is your first stop today, you've arrived just in time for the party."},
     {s:"Sam", x:"You might be sitting with some new faces tonight, so take a moment to say hello to your table. Your name, how you know the couple, and your best embarrassing story about them. Kidding. Maybe."},
     {s:"Trish", x:"In a few minutes, our newlyweds will make their grand entrance, so warm up those hands and get ready!"},
@@ -531,6 +539,31 @@ const SCRIPT = {
   ]
 };
 let scriptPart = "church";
+
+// ====== GAME SEGMENT (Sam & Trish, Tsao, Yi Ren) — from "Dinner Game Info" tab ======
+const GAME_TAB = "Game Segment";
+const GAME_PEOPLE = ["Sam & Trish", "Tsao", "Yi Ren"];
+const GAME_SONGS = [
+  {n:1, song:"Butter", cue:"0:27"},
+  {n:2, song:"Cruel Summer", cue:"1:14"},
+  {n:3, song:"路边的野花不要采", cue:"0:24"},
+  {n:4, song:"I Want It That Way", cue:"0:43"},
+  {n:5, song:"告白气球", cue:"1:01"},
+  {n:6, song:"Two is Better Than One", cue:"2:36"},
+  {n:7, song:"屋顶", cue:"1:18"},
+  {n:8, song:"Not Alone", cue:"1:37"}
+];
+const GAME_PRIZES = [
+  "1 ringgit",
+  "1000 won",
+  "Toto $1 quick pick",
+  "SGD 2 dollars",
+  "SGD 2 dollars",
+  "SGD 8 dollars",
+  "$10 cold storage voucher",
+  "0.1g Gold Bar",
+  "Lego set worth $100"
+];
 
 // "Bridal Party" expands to these people (bridesmaids + groomsmen only — not Chris & Mich):
 const BRIDAL_PARTY = ["Vic","Kim","Poh","Karen","Chingyee","Yi Ren","Cliff","Daryl","Tsao","Alex"];
@@ -579,9 +612,10 @@ function renderChips() {
   const el = document.getElementById("chips");
   const tabs = identity ? ["Everyone", identity, WHO_TAB] : ["Everyone", WHO_TAB];
   if (!identity || inAnyCar(identity)) tabs.push(CARS_TAB);
+  if (identity && GAME_PEOPLE.some(g => sameName(g, identity))) tabs.push(GAME_TAB);
   if (identity === EMCEES) tabs.push(SCRIPT_TAB);
   el.innerHTML = tabs.map(p => {
-    const label = p === SCRIPT_TAB ? "🎤 Script" : p === CARS_TAB ? "🚗 Cars" : p === WHO_TAB ? "👥 Who's Who" : p;
+    const label = p === SCRIPT_TAB ? "🎤 Script" : p === CARS_TAB ? "🚗 Cars" : p === WHO_TAB ? "👥 Who's Who" : p === GAME_TAB ? "🎶 Game" : p;
     return `<button class="chip${p === selected ? " active" : ""}" onclick="selectPerson('${p.replace(/'/g,"\\'")}')">${esc(label)}</button>`;
   }).join("");
   document.getElementById("identityLabel").textContent = identity || "";
@@ -614,6 +648,32 @@ function setScriptPart(p) {
   scriptPart = p;
   renderScript();
   window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function renderGame() {
+  const main = document.getElementById("timeline");
+  let html = "";
+  html += `<div class="section-title">🎶 Guess the Song</div>`;
+  html += `<div class="card">
+    <div class="field"><b>When</b>Dinner game segment — around 8:00PM.</div>
+    <div class="field"><b>Who does what</b>Sam &amp; Trish host and call the answers · Tsao cues each song from its chorus timing · Yi Ren runs the game logs and hands out the prize angbaos.</div>
+    <div class="field"><b>How it works</b>Play each song starting from its chorus. First guest to shout the correct title wins that round's prize.</div>
+  </div>`;
+  html += `<div class="section-title">Songs &amp; chorus cues</div>`;
+  html += GAME_SONGS.map(s => `<div class="game-row">
+      <span class="game-no">${s.n}</span>
+      <span class="game-song">${esc(s.song)}</span>
+      <span class="game-cue">▶ ${esc(s.cue)}</span>
+    </div>`).join("");
+  html += `<div class="section-title">Prizes</div>`;
+  html += GAME_PRIZES.map((p, i) => `<div class="game-row">
+      <span class="game-no">${i + 1}</span>
+      <span class="game-song">${esc(p)}</span>
+    </div>`).join("");
+  main.innerHTML = html;
+  document.getElementById("countNote").textContent =
+    `Dinner game — ${GAME_SONGS.length} songs, ${GAME_PRIZES.length} prizes 🎶`;
+  document.getElementById("jumpBar").innerHTML = "";
 }
 
 function renderWhosWho() {
@@ -738,6 +798,7 @@ function selectPerson(p) {
   renderChips();
   if (p === WHO_TAB) renderWhosWho();
   else if (p === CARS_TAB) renderCars();
+  else if (p === GAME_TAB) renderGame();
   else if (p === SCRIPT_TAB) renderScript();
   else renderTimeline();
   window.scrollTo({top: 0, behavior: "smooth"});
