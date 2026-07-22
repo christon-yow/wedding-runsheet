@@ -122,6 +122,8 @@
   .line.sam b { color: var(--sam); }
   .line.trish { background: var(--trish-bg); border-left: 4px solid var(--trish); }
   .line.trish b { color: var(--trish); }
+  .line.both { background: var(--sam-bg); border-left: 4px solid var(--sam); border-right: 4px solid var(--trish); }
+  .line.both b { color: var(--trish); }
   .line.cue {
     background: none; border: 1px dashed var(--line);
     color: var(--muted); font-style: italic; font-size: .8rem; text-align: center;
@@ -210,11 +212,15 @@
 
   /* Tea Ceremony Order tab */
   .tea-row { display: flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--sage); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .tea-row.tea-r-groom { border-left-color: #2563ab; }
+  .tea-row.tea-r-bride { border-left-color: #c0392b; }
   .tea-no { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: var(--sage-dark); color: #fff; font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .tea-r-groom .tea-no { background: #2563ab; }
+  .tea-r-bride .tea-no { background: #c0392b; }
   .tea-who { flex: 1 1 auto; font-size: .9rem; font-weight: 600; }
   .tea-side { flex: 0 0 auto; font-size: .68rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; color: #fff; white-space: nowrap; text-transform: uppercase; letter-spacing: .5px; }
-  .tea-side.tea-groom { background: var(--sage); }
-  .tea-side.tea-bride { background: var(--emerald); }
+  .tea-side.tea-groom { background: #2563ab; }
+  .tea-side.tea-bride { background: #c0392b; }
 
   /* Landing page */
   #landing {
@@ -326,7 +332,7 @@ const SECTIONS = [
       {time:"7:15AM", event:"Put on Veil for Bride", people:"Mich", duties:"Mich's parents to put on veil on the bride", logistics:"", location:"7 One-north", remarks:""},
       {time:"7:15AM", event:"Cliff arrives at 914\nChris leaves 914 for one-north", people:"Cliff, Chris", duties:"", logistics:"Chris' AD belongings\nChris' Staycay belongings\nBridal bouquet\nAD Laptop and charger\nAngbao for Julian\nTreats for Bubbles\nAngbaos", location:"Tampines 914", remarks:""},
       {time:"7:30AM", event:"Bridesmaids and groomsmen to arrive at One-north", people:"Daryl, Tsao, Yi Ren, Alex, Vic, Poh, Kim, Karen, Ching Yee", duties:"", logistics:"", location:"7 One-north", remarks:""},
-      {time:"7:45AM", event:"Chris and Cliff reach One-north\nJulian, Bubbles open car door", people:"Chris, Cliff, Julian, PG & VG", duties:"Julian open car door at One-north roadside (outside Lobby D)\nCliff drive to carpark", logistics:"Angbao for Julian\nTreats for Bubbles", location:"7 One-north", remarks:""},
+      {time:"7:45AM", event:"Chris and Cliff reach One-north\nJulian, Bubbles open car door", people:"Chris, Cliff, Julian, PG & VG", duties:"Julian open car door at One-north roadside (outside Lobby D)\nCliff drive to carpark", logistics:"Treats for Bubbles", location:"7 One-north", remarks:""},
       {time:"7:50AM", event:"Unveil the Bride", people:"Chris, Mich", duties:"", logistics:"Bridal bouquet", location:"7 One-north", remarks:""},
       {time:"8:00AM", event:"Breakfast", people:"Bridal Party, Chris, Mich", duties:"Chris order Macs breakfast the night before", logistics:"", location:"7 One-north", remarks:""},
       {time:"8:30AM", event:"Chris pass angbaos to Ching", people:"Chris, Ching Yee", duties:"Angbaos for Pastor Isaac and vendors", logistics:"Angbaos", location:"", remarks:""},
@@ -415,7 +421,7 @@ const SECTIONS = [
       {time:"9:15PM", event:"VG leaves", people:"PG & VG", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:20PM", event:"7th Dish", people:"", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:30PM", event:"Emcees to conclude ceremony and direct people to after party at straits bar", people:"Sam & Trish", duties:"", logistics:"", location:"Tower Club", remarks:""},
-      {time:"9:30PM", event:"Fam to stand by door and greet guests", people:"Chris, Mich, Julian, Clifford & Mich Chin", duties:"", logistics:"", location:"Tower Club", remarks:""},
+      {time:"9:30PM", event:"Families to stand by exit to thank guests", people:"Chris, Mich, Julian, Clifford & Mich Chin", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:45PM", event:"C&M head to Straits Bar", people:"Chris, Mich", duties:"", logistics:"", location:"Tower Club", remarks:""},
       {time:"9:45PM", event:"Tear down and keep Dinner decor and angbao box", people:"Daryl, Julian", duties:"Put Dinner decor and Angbao box in Julian's car", logistics:"Dinner decor\nAngbao box", location:"Tower Club", remarks:""},
       {time:"9:45PM", event:"Keep AD laptop and charger", people:"Tsao, Julian", duties:"Put in Julian's car", logistics:"AD laptop and charger", location:"Tower Club", remarks:""},
@@ -472,26 +478,26 @@ const WHO_TAB = "Who's Who";
 // Each rider's `id` maps to a selectable identity so the viewer's car is highlighted.
 const CARS_TAB = "Cars";
 const CARS = [
-  { trip: "→ Church", note: "From One-north. Load up at 8:40AM · depart for photos, then drive to church.", cars: [
+  { trip: "One-north → Wilmar / AMC", note: "Load up at 8:40AM · depart for photos, then drive to church.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["AD Laptop and charger (with Cliff)"] },
-    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true},{n:"Tsao",id:"Tsao"}], carries:["Angbaos and logs for games (with Yi Ren)"] },
-    { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true},{n:"Alex",id:"Alex"},{n:"Photographer",id:"PG & VG"},{n:"Videographer",id:"PG & VG"}], carries:["Dinner decor (with Daryl)"] },
+    { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true},{n:"Tsao",id:"Tsao"},{n:"Photographer",id:"PG & VG"},{n:"Videographer",id:"PG & VG"}], carries:["Angbaos and logs for games (with Yi Ren)"] },
+    { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true},{n:"Alex",id:"Alex"}], carries:["Dinner decor (with Daryl)"] },
     { car:"Car 4", riders:[{n:"Poh Gin Teng",id:"Poh",drive:true},{n:"Kim",id:"Kim"},{n:"Ching",id:"Chingyee"},{n:"Vic",id:"Vic"},{n:"Karen",id:"Karen"}], carries:["Ring Pillow and Rings (with Karen)","Flower Girl Basket and Petals (with Karen)","Angbaos for helpers/vendors (with Ching)","Mich's emergency kit (with Vic)"] },
     { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Chai Tin"},{n:"Auntie Yati"}], carries:["Mich's Staycay Belongings","Chris' Staycay Belongings","Mich's Dinner Belongings (dinner gown, slippers), Dinner MUA Angbao"] }
   ]},
-  { trip: "→ Pan Pac / Home", note: "From church.", cars: [
+  { trip: "AMC → Pan Pac / Home", note: "From church.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["AD Laptop and charger (with Cliff)"] },
     { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:["Angbaos and logs for games (with Yi Ren)"] },
     { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:["Dinner decor (with Daryl)"] },
     { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"}], carries:["Angbao Box with Church angbaos","Mich's and Chris' Staycay Belongings and Toiletries","Chris' Actual Day Belongings (dinner clothing, water bottle, handphone charger, portable fan)","Mich's Dinner Belongings (dinner gown, slippers), Dinner MUA Angbao"] }
   ]},
-  { trip: "→ Tower Club", note: "Evening run to Tower Club.", cars: [
+  { trip: "Pan Pac / Home → Tower Club", note: "Evening run to Tower Club.", cars: [
     { car:"Car 1 · Bridal Car", riders:[{n:"Cliff Choo",id:"Cliff",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Empty Angbao Box (with Cliff)","AD Laptop and charger (with Cliff)","Chris' Dinner Bag (water bottle, handphone charger, portable fan)","Mich's Dinner Bag (slippers)"] },
     { car:"Car 2", riders:[{n:"Yi Ren",id:"Yi Ren",drive:true}], carries:["Angbaos and logs for games (with Yi Ren)"] },
     { car:"Car 3", riders:[{n:"Daryl Chee",id:"Daryl",drive:true}], carries:["Dinner decor (with Daryl)"] },
     { car:"Car 5", riders:[{n:"Julian Ng",id:"Julian",drive:true},{n:"Mich's Dad"},{n:"Mich's Mum"},{n:"Auntie Yati"}], carries:[] }
   ]},
-  { trip: "After Wedding", note: "A valet drives the couple home with everything.", cars: [
+  { trip: "Tower Club → Pan Pac", note: "After the wedding — a valet drives the couple home with everything.", cars: [
     { car:"Car 5", riders:[{n:"Valet",drive:true},{n:"Christon",id:"Chris"},{n:"Michelle",id:"Mich"}], carries:["Angbao Box with Dinner angbaos","AD Laptop and charger","Dinner decor","Chris' Dinner Bag (water bottle, handphone charger, portable fan)","Mich's Dinner Bag (slippers)"] }
   ]}
 ];
@@ -501,29 +507,37 @@ const SCRIPT_TAB = "Emcee Script";
 const EMCEES = "Sam & Trish";
 const SCRIPT = {
   church: [
+    {t:"10:15AM", s:"cue", x:"Play Photos Slideshow."},
     {t:"10:45AM", s:"Sam", x:"Good morning everyone! The ceremony will begin in about 15 minutes, so please go ahead and find a seat."},
-    {s:"Trish", x:"While you're settling in, a few quick reminders. Please switch your phones to silent mode so the ceremony isn't interrupted."},
+    {s:"Trish", x:"While you're settling in, a few quick reminders from us. Please switch your phones to silent mode so the ceremony isn't interrupted."},
     {s:"Sam", x:"Photos and videos are very welcome though! If you're posting today, remember to tag Christon and Michelle in your posts and stories."},
-    {s:"Trish", x:"The nearest washrooms are to the right, when you exit the Sanctuary, so do make a quick trip now if you need one."},
+    {s:"Trish", x:"The nearest washrooms are to the right when you exit the Sanctuary. If you don't want to miss any part of the ceremony later, now's the best time to head over to the loo."},
     {s:"Sam", x:"Thank you, and we'll be back very soon to get things started!"},
-    {t:"10:55AM", s:"cue", x:"Doors close; angbao box kept. Ceremony begins at 11:00; wedding teaser video plays at 11:01."},
+    {t:"10:55AM", s:"cue", x:"Doors close; angbao box kept."},
+    {t:"11:00AM", s:"cue", x:"Play 1_Pre-Wedding Video. After video ends, show Church Matrimony Slides Slide 1."},
     {t:"11:01AM", s:"Sam", x:"Good morning, ladies and gentlemen, and a very warm welcome to the wedding of Christon and Michelle!"},
     {s:"Trish", x:"I'm Trish, and this is Sam, and we'll be your emcees this morning!"},
     {s:"Sam", x:"On behalf of Christon, Michelle, and both their families, thank you all for being here. It means the world to them that you're spending this morning celebrating with them."},
     {s:"Trish", x:"In a moment, the wedding party will make their way in. Let's give them a warm welcome."},
+    {t:"11:03AM", s:"cue", x:"Play 2_March In Song (At the Beginning)."},
     {t:"11:03AM", s:"cue", x:"Flower girl and page boy enter."},
     {t:"11:04AM", s:"cue", x:"Bridesmaids walk in."},
-    {t:"11:05AM", s:"Sam", x:"And now, the moment we've all been waiting for. Everyone, please rise, and let's welcome our beautiful bride, Michelle, and her father! [all rise, bride marches in, doors close behind]"},
-    {t:"11:10AM", s:"Trish", x:"[once bride reaches the front] Please remain standing as we begin with a time of praise and worship. [hand over to band: \"Your Love Never Fails\", \"Through It All\"]"},
+    {t:"11:05AM", s:"Trish", x:"And now, everyone please rise, and let's welcome our beautiful bride, Michelle, and her father! [all rise, bride marches in, doors close behind]"},
+    {t:"11:10AM", s:"cue", x:"Pastor Isaac begins service, hands over to worship band \"Your Love Never Fails\", \"Through It All\". Show Church Matrimony Slides 2 to 20. After Praise and Worship ends, show Church Matrimony Slides 21."},
     {t:"11:20AM", s:"cue", x:"Pastor Isaac shares the message. Emcees stand by; no lines until after the march out."},
     {t:"11:35AM", s:"cue", x:"Vows and exchange of rings (Kim passes rings to Pastor Isaac)."},
-    {t:"11:45AM", s:"cue", x:"Christon & Michelle march out. Tsao and Winx prep guitar and keyboard for the song performance."},
-    {t:"11:47AM", s:"Sam", x:"And here they come! Ladies and gentlemen, please put your hands together and welcome back, for the very first time as husband and wife, Mr and Mrs Yow! [couple walks back in and take their seats]"},
-    {s:"Trish", x:"Congratulations again, you two! Now, while they settle in, here's a treat for everyone. Ever wondered what Christon and Michelle were like as kids? Sit back and enjoy this montage prepared by both of them. [childhood montage plays around 11:50]"},
-    {t:"12:10PM", s:"Trish", x:"Thank you, Christon and Michelle. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence truly made this celebration complete."},
+    {t:"11:45AM", s:"cue", x:"Play 3_Walkout Song. Christon & Michelle march out."},
+    {t:"11:47AM", s:"Sam", x:"Ladies and gentlemen, please put your hands together and welcome back, for the very first time as husband and wife,"},
+    {s:"Sam & Trish", x:"Mr and Mrs Yow!"},
+    {t:"11:47AM", s:"cue", x:"Play 4_Re-entry Song."},
+    {s:"Trish", x:"Congratulations again, you two! While they settle in, here's a treat for everyone. Ever wondered what Christon and Michelle were like as kids? Sit back and enjoy this montage prepared by both of them. [childhood montage plays around 11:50]"},
+    {t:"11:50AM", s:"cue", x:"Play 5_Childhood Montage. Tsao and Winx prep guitar and keyboard for the song performance."},
+    {t:"11:55AM", s:"cue", x:"Christon & Michelle starts performance. Play TIBTO Slideshow."},
+    {t:"12:10PM", s:"Trish", x:"Can I get round of applause for that wonderful performance? Thank you Christon and Michelle. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence has truly made this celebration complete."},
     {s:"Sam", x:"There will be a lunch reception at Fairfield Methodist School canteen, right next door. We heard there's a plethora of food; a buffet spread, live laksa station, coffee cart and also an ice-cream stand. So please enjoy your lunch later and our ushers will point you in the right direction."},
-    {s:"Trish", x:"But before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. Before we invite the family members up for photos, we'd first like to take a moment to say grace and give thanks for the food and this time together."},
-    {s:"cue", x:"Emcees read out the photo-taking sequence from the screen. Shimone ushers guests to FMS(P) canteen."}
+    {s:"Trish", x:"Before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. Before we invite the family members up for photos, let's take a moment to say grace and give thanks for the food and this time together."},
+    {s:"Sam", x:"Dear Lord XXXXXXX"},
+    {s:"cue", x:"Show Church Matrimony Slides 22. Shimone ushers guests to FMS(P) canteen."}
   ],
   dinner: [
     {t:"6:00PM", s:"cue", x:"Emcees arrive for AV and mic test during tea ceremony setup."},
@@ -532,7 +546,8 @@ const SCRIPT = {
     {s:"Trish", x:"I'm Trish, and this is Sam. For those who were with us at the church this morning, welcome back. And if this is your first stop today, you've arrived just in time for the party."},
     {s:"Sam", x:"You might be sitting with some new faces tonight, so take a moment to say hello to your table. Your name, how you know the couple, and your best embarrassing story about them. Kidding. Maybe."},
     {s:"Trish", x:"In a few minutes, our newlyweds will make their grand entrance, so warm up those hands and get ready!"},
-    {t:"7:15PM", s:"Sam", x:"Ladies and gentlemen, please rise! Let's give the biggest welcome of the night to the stars of the evening, Mr and Mrs Yow: Christon and Michelle! [couple marches in to song]"},
+    {t:"7:15PM", s:"Sam", x:"Ladies and gentlemen, please rise! Let's give the biggest welcome of the night to the stars of the evening,"},
+    {s:"Sam & Trish", x:"Mr and Mrs Yow: Christon and Michelle! [couple marches in to song]"},
     {s:"Trish", x:"[once couple is seated] Thank you, everyone, please be seated. And with that, dinner is served. Enjoy!"},
     {t:"7:20PM", s:"cue", x:"1st dish served (7:20); 2nd dish (7:35). Wedding playlist loops in the background."},
     {t:"7:40PM", s:"Sam", x:"I hope everyone's enjoying the food so far. Now, someone who knows Michelle very well would like to share a few words. Please welcome bridesmaid Vic to the stage!"},
@@ -544,10 +559,11 @@ const SCRIPT = {
     {s:"Sam", x:"It doesn't have to be perfect. It just has to be… recognisable. We're not judges on a singing show. We're much less forgiving."},
     {s:"Trish", x:"[laughs] Sing it right, and you pick a mystery angbao from Yi Ren — every one has a prize inside."},
     {s:"Sam", x:"Eight rounds, English and Mandarin songs — something for every generation in the room. Phones out, fingers ready…"},
+    {s:"cue", x:"LETS SEE THE COUPLE DEMO FOR US"},
     {s:"Trish", x:"Let's hear Round One!"},
     {s:"cue", x:"[Round flow — repeat for all 8 rounds. Sam leads odd rounds, Trish leads even. Lead: “Round X! First caller through to Christon wins — that number again: 9233 7669!” → clip plays → winner comes up on stage → “What's your name, and which table are you from?” → “Name that song!” → if correct: “Now sing us the chorus!” → win: “Give it up for [name]! Go pick your angbao from Yi Ren!” → wrong or can't sing: “So close! The line is open again — 9233 7669!” For 屋顶 (the duet), the winner nominates anyone in the room to sing it with them. Remind guests of the number every 2–3 rounds.]"},
     {s:"Trish", x:"And that was our final round! Give yourselves a big round of applause — and to all our winners tonight, enjoy those angbaos!"},
-    {s:"Sam", x:"A huge thank you to Tsao and Yi Ren for helping us run the game! [applause]"},
+    {s:"Sam", x:"A huge thank you to Bryan Tsao and Yi Ren for helping us run the game! [applause]"},
     {t:"8:20PM", s:"cue", x:"4th dish served (8:20). 5th dish comes later at 8:45, after the couple's speech."},
     {t:"8:25PM", s:"Sam", x:"Ladies and gentlemen, it's time for the moment every wedding dinner is famous for. May we invite Christon and Michelle to the stage, and everyone, please rise and charge your glasses!"},
     {s:"Trish", x:"We'll be doing three toasts tonight, so pace yourselves. The first toast: to Christon and Michelle's everlasting love! Yaaaam... SENG!"},
@@ -557,7 +573,7 @@ const SCRIPT = {
     {t:"8:35PM", s:"Trish", x:"And now, before the night winds down, the two people you all came for would like to say a few words. Christon, Michelle, over to you. [hand mic to couple]"},
     {t:"9:05PM", s:"Sam", x:"[as phototaking begins] Thank you again, Christon and Michelle. The couple will now go around for photos with each group, so do keep an eye out for when it's your turn. Meanwhile, please enjoy the rest of dinner."},
     {t:"9:20PM", s:"cue", x:"7th dish served. Couple continues phototaking by social circle (Karen and Daryl coordinate)."},
-    {t:"9:30PM", s:"Trish", x:"Ladies and gentlemen, as this wonderful day comes to a close, on behalf of Christon, Michelle, and their families, thank you for celebrating with them tonight. Your presence meant everything."},
+    {t:"9:30PM", s:"Trish", x:"Ladies and gentlemen, as this wonderful day comes to a close, on behalf of Christon, Michelle, and their families, thank you for celebrating with them tonight."},
     {s:"Sam", x:"But who says the night has to end? The party continues at Straits Bar, so come join the couple for the after-party!"},
     {s:"Trish", x:"Christon, Michelle, and their families will be at the door to see you off. Once again, we're Sam and Trish, it's been a joy being your emcees today. Good night, everyone!"}
   ]
@@ -681,15 +697,26 @@ function esc(s) {
   return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
-// Is this person a driver in any car? (Cars tab only shows for drivers.)
-function isDriver(person) {
-  return CARS.some(t => t.cars.some(c => c.riders.some(r => r.drive && r.id && sameName(r.id, person))));
+// Which cars should this person see in the Cars tab?
+// - the car they drive, OR
+// - a car they ride in that's driven by a valet (no helper driver), e.g. Chris & Mich's ride home.
+function myCars(person) {
+  const out = [];
+  CARS.forEach((trip, ti) => {
+    trip.cars.forEach(car => {
+      const drives = car.riders.some(r => r.drive && r.id && sameName(r.id, person));
+      const rides = car.riders.some(r => r.id && sameName(r.id, person));
+      const valet = !car.riders.some(r => r.drive && r.id); // no helper driver
+      if (drives || (rides && valet)) out.push({ ti, trip, car });
+    });
+  });
+  return out;
 }
 
 function renderChips() {
   const el = document.getElementById("chips");
   const tabs = identity ? ["Everyone", identity, WHO_TAB] : ["Everyone", WHO_TAB];
-  if (identity && isDriver(identity)) tabs.push(CARS_TAB);
+  if (identity && myCars(identity).length) tabs.push(CARS_TAB);
   if (identity && GAME_PEOPLE.some(g => sameName(g, identity))) tabs.push(GAME_TAB);
   if (identity && LOGS_PEOPLE.some(g => sameName(g, identity))) tabs.push(LOGS_TAB);
   if (identity && TEA_PEOPLE.some(g => sameName(g, identity))) tabs.push(TEA_TAB);
@@ -710,7 +737,8 @@ function renderScript() {
     if (l.s === "cue") {
       html += `<div class="line cue">${esc(l.x)}</div>`;
     } else {
-      html += `<div class="line ${l.s.toLowerCase()}"><b>${esc(l.s)}</b>${esc(l.x)}</div>`;
+      const cls = l.s === "Sam" ? "sam" : l.s === "Trish" ? "trish" : "both";
+      html += `<div class="line ${cls}"><b>${esc(l.s)}</b>${esc(l.x)}</div>`;
     }
   }
   html += `<div class="script-note">📝 <b>Note:</b> The Guess the Song game is run freestyle by the emcees with Tsao.</div>`;
@@ -776,7 +804,7 @@ function renderTea() {
   const main = document.getElementById("timeline");
   let html = `<div class="section-title">🍵 Tea Ceremony Order</div>`;
   html += `<div class="car-intro">Order for calling relatives up to serve tea (~6:00PM). Serve in this sequence.</div>`;
-  html += TEA_ORDER.map(o => `<div class="tea-row">
+  html += TEA_ORDER.map(o => `<div class="tea-row tea-r-${o.side.toLowerCase()}">
       <span class="tea-no">${o.n}</span>
       <span class="tea-who">${esc(o.who)}</span>
       <span class="tea-side tea-${o.side.toLowerCase()}">${esc(o.side)}</span>
@@ -810,14 +838,20 @@ function renderWhosWho() {
 function renderCars() {
   const main = document.getElementById("timeline");
   let html = "";
-  let myCarTrips = 0;
+  const visible = [];
+  const mine = identity ? myCars(identity) : null;
   CARS.forEach((trip, ti) => {
+    // Show only the viewer's own car(s) for this trip (driver's car, or their valet ride).
+    let cars = trip.cars;
+    if (mine) {
+      cars = mine.filter(m => m.ti === ti).map(m => m.car);
+      if (!cars.length) return;
+    }
+    visible.push({ ti, trip });
     html += `<div class="sec sec-car ctrip-${ti}">`;
     html += `<div class="section-title" id="car-${ti}">${esc(trip.trip)}</div>`;
     if (trip.note) html += `<div class="car-intro">${esc(trip.note)}</div>`;
-    for (const car of trip.cars) {
-      const mine = identity && car.riders.some(r => r.id && sameName(r.id, identity));
-      if (mine) myCarTrips++;
+    for (const car of cars) {
       const driver = car.riders.find(r => r.drive);
       const riderTags = car.riders.map(r => {
         const me = r.id && identity && sameName(r.id, identity);
@@ -826,11 +860,8 @@ function renderCars() {
       const carries = car.carries.length
         ? `<div class="car-carries"><b>Carries</b>${car.carries.map(esc).join("<br>")}</div>`
         : "";
-      html += `<div class="car-card${mine ? " mine" : ""}">
-        <div class="car-head">
-          <span class="car-name">${esc(car.car)}</span>
-          ${mine ? `<span class="car-mine-badge">your car</span>` : ""}
-        </div>
+      html += `<div class="car-card mine">
+        <div class="car-head"><span class="car-name">${esc(car.car)}</span></div>
         ${driver ? `<div class="car-driver">🚗 Driver: ${esc(driver.n)}</div>` : ""}
         <div>${riderTags}</div>
         ${carries}
@@ -838,13 +869,11 @@ function renderCars() {
     }
     html += `</div>`;
   });
-  main.innerHTML = html;
+  main.innerHTML = html || `<div class="empty-state">No car assigned to you.</div>`;
   document.getElementById("countNote").textContent =
-    identity && myCarTrips
-      ? `Your car is highlighted across ${myCarTrips} trip${myCarTrips === 1 ? "" : "s"} 🚗`
-      : "Who rides in which car, and what each car carries 🚗";
-  document.getElementById("jumpBar").innerHTML = CARS.map((trip, ti) =>
-    `<button class="jump-btn jump-${ti}" onclick="document.getElementById('car-${ti}').scrollIntoView({behavior:'smooth'})">${esc(trip.trip)}</button>`
+    `Your car — ${visible.length} trip${visible.length === 1 ? "" : "s"} 🚗`;
+  document.getElementById("jumpBar").innerHTML = visible.map(v =>
+    `<button class="jump-btn jump-${v.ti}" onclick="document.getElementById('car-${v.ti}').scrollIntoView({behavior:'smooth'})">${esc(v.trip.trip.split(" → ").pop())}</button>`
   ).join("");
 }
 
