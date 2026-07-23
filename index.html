@@ -336,8 +336,8 @@ const SECTIONS = [
       {time:"7:50AM", event:"Unveil the Bride", people:"Chris, Mich", duties:"", logistics:"Bridal bouquet", location:"7 One-north", remarks:""},
       {time:"8:00AM", event:"Breakfast", people:"Bridal Party, Chris, Mich", duties:"Chris order Macs breakfast the night before", logistics:"", location:"7 One-north", remarks:""},
       {time:"8:30AM", event:"Chris pass angbaos to Ching", people:"Chris, Ching Yee", duties:"Angbaos for Pastor Isaac and vendors", logistics:"Angbaos", location:"", remarks:""},
-      {time:"8:30AM", event:"Load logistics into car", people:"Bridal Party", duties:"Car drivers refer to Cars tab for details", logistics:"", location:"7 One-north", remarks:""},
-      {time:"8:40AM", event:"Travel to Wilmar for phototaking", people:"Bridal Party, PG & VG", duties:"Car drivers refer to Cars tab for details", logistics:"", location:"Wilmar", remarks:""},
+      {time:"8:30AM", event:"Load logistics into car", people:"Bridal Party", duties:"Refer to Cars tab for details", logistics:"", location:"7 One-north", remarks:""},
+      {time:"8:40AM", event:"Travel to Wilmar for phototaking", people:"Bridal Party, PG & VG", duties:"Refer to Cars tab for details", logistics:"", location:"Wilmar", remarks:""},
       {time:"9:00AM", event:"Bridal Party photoshoot", people:"Bridal Party, PG & VG", duties:"", logistics:"Portable fans", location:"Wilmar", remarks:""},
       {time:"9:40AM", event:"All head to Church", people:"Bridal Party, Chris, Mich, PG & VG", duties:"Get timekeeper to keep time in case photoshoot overruns, 10.15am latest for bride and groom", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"9:45AM", event:"Reach Church , Final Setup", people:"Yi Ren, Alex, Ching Yee", duties:"Receptionists check overall decor and necessary logistics on reception table\nAlex block parking lot for Coffee Vendor and Mich's Fam car using parking cones", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
@@ -698,16 +698,12 @@ function esc(s) {
 }
 
 // Which cars should this person see in the Cars tab?
-// - the car they drive, OR
-// - a car they ride in that's driven by a valet (no helper driver), e.g. Chris & Mich's ride home.
+// Every car they're part of (as driver or passenger), per trip.
 function myCars(person) {
   const out = [];
   CARS.forEach((trip, ti) => {
     trip.cars.forEach(car => {
-      const drives = car.riders.some(r => r.drive && r.id && sameName(r.id, person));
-      const rides = car.riders.some(r => r.id && sameName(r.id, person));
-      const valet = !car.riders.some(r => r.drive && r.id); // no helper driver
-      if (drives || (rides && valet)) out.push({ ti, trip, car });
+      if (car.riders.some(r => r.id && sameName(r.id, person))) out.push({ ti, trip, car });
     });
   });
   return out;
