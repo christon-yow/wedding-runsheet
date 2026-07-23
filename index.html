@@ -371,7 +371,7 @@ const SECTIONS = [
       {time:"11:47AM", event:"C&M Re-entry", people:"Church AV & VC, Daryl, Karen, Chris, Mich, Sam & Trish", duties:"AV play Re-entry music\nDaryl and Karen Dance\nChris and Mich March in", logistics:"4_Re-entry Song", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:50AM", event:"Childhood Montage", people:"Church AV & VC, Sam & Trish", duties:"AV & VC play Childhood Montage video", logistics:"5_Childhood Montage", location:"Aldersgate Methodist Church", remarks:""},
       {time:"11:50AM", event:"Prepare Music Setup", people:"Tsao, Winx", duties:"Tsao prep guitar\nWinx prep keyboard", logistics:"Guitar\nKeyboard", location:"Aldersgate Methodist Church", remarks:""},
-      {time:"11:55AM", event:"C&M TIBTO", people:"Church AV & VC, Chris, Mich", duties:"VC show TIBTO slideshow\nAttach VG's mic to mic", logistics:"TIBTO slideshow", location:"Aldersgate Methodist Church", remarks:""},
+      {time:"11:55AM", event:"C&M Performance", people:"Church AV & VC, Chris, Mich", duties:"VC show Performance slideshow\nAttach VG's mic to mic", logistics:"Performance slideshow", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:00PM", event:"C&M Speeches", people:"Chris, Mich, Poh", duties:"Poh to pass Mich her phone", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:10PM", event:"Emcees to say grace before lunch", people:"Sam & Trish", duties:"", logistics:"", location:"Aldersgate Methodist Church", remarks:""},
       {time:"12:10PM", event:"Phototaking & Lunch", people:"Sam & Trish, Chris, Mich, Poh, Shimone, Joyce", duties:"VC show phototaking order slide\nEmcees announce next group for phototaking\nPoh get next group ready for phototaking\nAV play Spotify 8.8 Dinner playlist\nUshers usher guests to FMS(P) Canteen", logistics:"Church Matrimony Slide 22\nSpotify 8.8 Dinner playlist", location:"Aldersgate Methodist Church, Fairfield Methodist Pri", remarks:""},
@@ -532,12 +532,12 @@ const SCRIPT = {
     {t:"11:47AM", s:"cue", x:"Play 4_Re-entry Song."},
     {s:"Trish", x:"Congratulations again, you two! While they settle in, here's a treat for everyone. Ever wondered what Christon and Michelle were like as kids? Sit back and enjoy this montage prepared by both of them. [childhood montage plays around 11:50]"},
     {t:"11:50AM", s:"cue", x:"Play 5_Childhood Montage. Tsao and Winx prep guitar and keyboard for the song performance."},
-    {t:"11:55AM", s:"cue", x:"Christon & Michelle starts performance. Play TIBTO Slideshow."},
-    {t:"12:10PM", s:"Trish", x:"Can I get round of applause for that wonderful performance? Thank you Christon and Michelle. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence has truly made this celebration complete."},
+    {t:"11:55AM", s:"cue", x:"Christon & Michelle starts performance. Play Performance Slideshow."},
+    {t:"12:10PM", s:"Trish", x:"Thank you, Christon and Michelle, for your lovely speeches and performance. On behalf of the couple and their families, thank you all once again for spending your Saturday morning here. Your presence has truly made this celebration complete."},
     {s:"Sam", x:"There will be a lunch reception at Fairfield Methodist School canteen, right next door. We heard there's a plethora of food; a buffet spread, live laksa station, coffee cart and also an ice-cream stand. So please enjoy your lunch later and our ushers will point you in the right direction."},
     {s:"Trish", x:"Before you go, the couple would love a photo with every one of you. Photo-taking will happen right here at the stage, and the sequence will be shown on the screen. Before we invite the family members up for photos, let's take a moment to say grace and give thanks for the food and this time together."},
     {s:"Sam", x:"Dear Lord XXXXXXX"},
-    {s:"cue", x:"Show Church Matrimony Slides 22. Shimone ushers guests to FMS(P) canteen."}
+    {s:"cue", x:"Show Church Matrimony Slides 22 (Phototaking Order)."}
   ],
   dinner: [
     {t:"6:00PM", s:"cue", x:"Emcees arrive for AV and mic test during tea ceremony setup."},
@@ -741,7 +741,6 @@ function renderScript() {
       html += `<div class="line ${cls}"><b>${esc(l.s)}</b>${esc(l.x)}</div>`;
     }
   }
-  html += `<div class="script-note">📝 <b>Note:</b> The Guess the Song game is run freestyle by the emcees with Tsao.</div>`;
   html += `<a href="https://docs.google.com/document/d/1zVJcTEdFMnNUZZ2RH061jiI5IQ-J0gHS5EX-mSJ_ZLY/edit" target="_blank" rel="noopener" style="display:block; text-align:center; margin-top:12px; padding:12px; border-radius:10px; background:var(--emerald); color:#fff; font-weight:600; font-size:.9rem; text-decoration:none;">✏️ Suggest a change (opens the Google Doc)</a>
   <div style="text-align:center; font-size:.7rem; color:var(--muted); margin-top:6px;">Edits go into the master script — this page updates after the next sync.</div>`;
   main.innerHTML = html;
